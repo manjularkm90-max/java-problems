@@ -1,0 +1,20 @@
+
+import java.util.Scanner;
+public class Operator{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int creditlimit=sc.nextInt();
+        int purchaseamount =sc.nextInt();
+        int cardblocked =sc.nextInt();
+        if((purchaseamount <= creditlimit)&&( cardblocked==0)) {
+           System.out.println("approved");
+        }
+        else if((purchaseamount > creditlimit) &&(cardblocked==0)){
+            System.out.println("declined");
+
+        }else{
+             System.out.println("declined");
+
+        }
+    }
+}
