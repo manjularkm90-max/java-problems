@@ -1,0 +1,17 @@
+
+import java.util.Scanner;
+public class Operator{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int salary=sc.nextInt();
+        int creditscore =sc.nextInt();
+        if((salary > 25000 )&&(creditscore > 700)) {
+           System.out.println("approved");
+        }
+        else
+        {
+            System.out.println("rejected");
+
+        }
+    }
+}
