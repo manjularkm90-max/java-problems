@@ -1,0 +1,13 @@
+import java.util.Scanner;
+public class Basic{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int basicpay=sc.nextInt();
+        int hra=sc.nextInt();
+        int bonus=sc.nextInt();
+        int tax=sc.nextInt();
+        int pf=sc.nextInt();
+        int finalsalary=basicpay+hra+bonus-tax-pf;
+        System.out.println("finalsalary:"+finalsalary);
+    }
+}
