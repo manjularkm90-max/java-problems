@@ -1,0 +1,15 @@
+ 
+import java.util.Scanner;
+public class Sample {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int copies= sc.nextInt();
+        int cost= sc.nextInt();
+        int editing = sc.nextInt();
+        int design= sc.nextInt();
+        int commission= sc.nextInt();
+        int marketing= sc.nextInt();
+        int a=(copies*cost) + editing + design - commission -marketing;
+        System.out.println("Publishing Profit :" + a);
+
+    }
