@@ -1,0 +1,54 @@
+import java.util.Scanner;
+public class Conditional{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int Rating = sc.nextInt();
+        int years = sc.nextInt();
+        double baseSalary = sc.nextDouble();
+        String departmentType = sc.nextLine();
+
+        if((Rating >= 1) && (Rating <= 5)){
+            System.out.println("Performance Rating:"+Rating);
+        }
+        if((years >= 0)&&(years <= 40)){
+            System.out.println("Years of Service:"+years);
+
+        }
+        float percentage=0;
+        double bonus=0;
+        if((departmentType == "critical")||(departmentType == "critical")){
+            if((Rating == 5) && (years >=5)){
+                 percentage = 25;
+                }
+                else if((Rating == 4) && (years >=10)){
+                    percentage = 22;
+                    }
+                    else if(Rating == 4){
+                         percentage = 15;
+                        }
+                        else if(Rating == 3){
+                             percentage = 10;
+                            }  System.out.println("critical");
+                             if((departmentType == "noncritical")||(departmentType == "noncritical")){
+                                if(Rating == 5){
+                                    percentage = 18;
+                                    }
+                                    else if(Rating == 4){
+                                         percentage = 12;
+                                        }
+                                        else if(Rating == 3){
+                                             percentage = 18;
+                                             }
+                                             System.out.println("noncritical");
+                                               
+                            }
+         }
+                            bonus=baseSalary * (percentage/100);
+                            System.out.println("percentage:"+percentage);
+                            System.out.println("bonus:" +bonus );
+                            if(Rating  >= 3){
+                                System.out.println("eligible");
+                                }
+                                else{
+                                    System.out.println("not eligible");
+                                    }
