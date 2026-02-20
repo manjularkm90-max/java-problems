@@ -1,0 +1,18 @@
+
+import java.util.Scanner;
+public class Sample {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int registration= sc.nextInt();
+        int  broadcast = sc.nextInt();
+        int sponsor = sc.nextInt();
+        int prize= sc.nextInt();
+        int rent= sc.nextInt();
+        int advertising = sc.nextInt();
+        int a=registration +broadcaste +sponsor-price -rent -advertising;
+        System.out.println(" Remaining Tournament Fund:" + a);
+       
+
+    }
+
+}
