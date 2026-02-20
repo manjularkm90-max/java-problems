@@ -1,0 +1,16 @@
+
+import java.util.Scanner;
+public class Sample {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int adss= sc.nextInt();
+        int sponser= sc.nextInt();
+        int affiliate = sc.nextInt();
+        int tax = sc.nextInt();
+        int production = sc.nextInt();
+        int a=adss + sponser + affiliate - tax -production;
+        System.out.println("Final YouTube Income:" + a);
+
+    }
+
+}
