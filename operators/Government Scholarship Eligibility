@@ -1,0 +1,17 @@
+
+import java.util.Scanner;
+public class Operator{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int familyIncome=sc.nextInt();
+        int percentage =sc.nextInt();
+        if((familyIncome <= 200000 )&&(percentage >= 75)) {
+           System.out.println("granted");
+        }
+        else
+        {
+            System.out.println("not garnted");
+
+        }
+    }
+}
