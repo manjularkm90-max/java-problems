@@ -1,0 +1,26 @@
+
+
+import java.util.Scanner;
+public class Operator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int usernameMatch = sc.nextInt();
+        int passwordMatch = sc.nextInt();
+        int accountLocked= sc.nextInt();
+        if((usernameMatch == passwordMatch)&&(accountLocked==0)){
+            System.out.println(" Success ");
+        }
+        else if((usernameMatch != passwordMatch)&&(accountLocked==0)){
+            System.out.println("failed");
+        } 
+        else if((usernameMatch == passwordMatch)&& (accountLocked==1)){
+            System.out.println("failed");
+        }
+        else{
+             System.out.println("failed");
+
+         }
+
+        sc.close();
+    }
+}
