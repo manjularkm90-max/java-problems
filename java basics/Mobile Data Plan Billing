@@ -1,0 +1,17 @@
+
+import java.util.Scanner;
+public class Basic {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double baseCost = sc.nextDouble();
+        double extraGB = sc.nextDouble();
+        double ratePerGB = sc.nextDouble();
+        double tax = sc.nextDouble();
+        double extraCharges = extraGB * ratePerGB;
+        double totalBeforeTax = baseCost + extraCharges;
+        double taxAmount = totalBeforeTax * tax / 100;
+        double finalBill = totalBeforeTax + taxAmount;
+        System.out.println("Total Bill = " + finalBill);
+        sc.close();
+    }
+}
