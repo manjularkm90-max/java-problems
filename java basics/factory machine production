@@ -1,0 +1,15 @@
+
+import java.util.Scanner;
+class Basic {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int rodesperhour = sc.nextInt();
+        int hoursworked = sc.nextInt();
+        int overtimerods = sc.nextInt();
+        int rejectedrods = sc.nextInt();
+        int b=rodesperhour*hoursworked;
+        int a=b+overtimerods;
+        int c=a-rejectedrods;
+        System.out.println("Usable Rods :"+c);
+    }
+}
