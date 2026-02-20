@@ -1,0 +1,27 @@
+
+import java.util.Scanner;
+public class Operator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int unitsConsumed = sc.nextInt();
+        int voltageFluctuation = sc.nextInt();
+        if((unitsConsumed >  500)&&(voltageFluctuation==0)){
+            System.out.println(" alert ");
+        }
+        else if((unitsConsumed < 500) && (voltageFluctuation==1)){
+            System.out.println("alert");
+        } 
+           else if((unitsConsumed  > 500)&& (voltageFluctuation==1)){
+            System.out.println("alert");
+        }
+        else if((unitsConsumed  <= 500)&& (voltageFluctuation==0)){
+            System.out.println("normal");
+        }
+        else{
+             System.out.println("normal");
+
+         }
+
+        sc.close();
+    }
+}
