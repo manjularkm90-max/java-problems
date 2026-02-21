@@ -1,0 +1,73 @@
+
+import java.util.Scanner;
+public class Conditional {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String loyaltyTier = sc.nextLine();
+        double cartValue = sc.nextDouble();
+        sc.nextLine(); 
+        String productCategory = sc.nextLine();
+        String membershipStatus = sc.nextLine();
+
+        int baseDiscount = 0;
+        int additionalDiscount = 0;
+
+        if (loyaltyTier.equals("Bronze")) {
+            baseDiscount = 5;
+        } else if (loyaltyTier.equals("Silver")) {
+            baseDiscount = 10;
+        } else if (loyaltyTier.equals("Gold")) {
+            baseDiscount = 12;
+        } else if (loyaltyTier.equals("Platinum")) {
+            baseDiscount = 15;
+        }
+
+        if (membershipStatus.equals("Prime")) {
+
+            if (productCategory.equals("Electronics") && cartValue >= 1000) {
+                additionalDiscount = 10;
+            } 
+            else if (productCategory.equals("Fashion") && cartValue >= 500) {
+                additionalDiscount = 8;
+            } 
+            else if (productCategory.equals("Groceries") && cartValue >= 300) {
+                additionalDiscount = 5;
+            } 
+            else if (productCategory.equals("Books") && cartValue >= 200) {
+                additionalDiscount = 7;
+            }
+
+        } else { 
+
+            if (productCategory.equals("Electronics") && cartValue >= 1000) {
+                additionalDiscount = 5;
+            } 
+            else if (productCategory.equals("Fashion") && cartValue >= 500) {
+                additionalDiscount = 4;
+            } 
+            else if (productCategory.equals("Groceries") && cartValue >= 300) {
+                additionalDiscount = 3;
+            } 
+            else if (productCategory.equals("Books") && cartValue >= 200) {
+                additionalDiscount = 4;
+            }
+        }
+
+        int totalDiscount = baseDiscount + additionalDiscount;
+
+        double savings = (cartValue * totalDiscount) / 100;
+        double finalPrice = cartValue - savings;
+        System.out.println("Loyalty Tier: " + loyaltyTier);
+        System.out.println("Cart Value: $" + cartValue);
+        System.out.println("Product Category: " + productCategory);
+        System.out.println("Membership: " + membershipStatus);
+        System.out.println("Base Discount: " + baseDiscount + "%");
+        System.out.println("Additional Discount: " + additionalDiscount + "%");
+        System.out.println("Total Discount: " + totalDiscount + "%");
+        System.out.println("Final Price: $" + finalPrice);
+        System.out.println("Savings: $" + savings);
+
+    }
+}
