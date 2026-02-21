@@ -1,0 +1,48 @@
+
+import java.util.Scanner;
+public class BankLoanApprovalSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int creditScore = sc.nextInt();
+        double annualIncome = sc.nextDouble();
+        double Ratio = sc.nextDouble();
+        sc.nextLine(); 
+        String loanType = sc.nextLine();
+        String decision;
+        double maxLoanAmount = 0;
+        if (creditScore >= 750) {
+            if (Ratio <= 30) {
+                decision = "Approved";
+
+                if (loanType.equalsIgnoreCase("Home")) {
+                    maxLoanAmount = annualIncome * 4;
+                } else if (loanType.equalsIgnoreCase("Business")) {
+                    maxLoanAmount = annualIncome * 3;
+                } else { 
+                    maxLoanAmount = annualIncome * 2;
+                }
+
+            } else {
+                decision = "Needs Review";
+            }
+
+        } else if (creditScore >= 650) {
+            if (Ratio <= 40) {
+                decision = "Needs Review";
+            } else {
+                decision = "Rejected";
+            }
+
+        } else {
+            decision = "Rejected";
+        }
+
+        System.out.println("Credit Score: " + creditScore);
+        System.out.println("Annual Income: $" + annualIncome);
+        System.out.println("Debt-to-Income Ratio: " + debtToIncomeRatio + "%");
+        System.out.println("Loan Type: " + loanType);
+        System.out.println("Decision: " + decision);
+        System.out.println("Maximum Loan Amount: $" + maxLoanAmount);
+
+    }
+}
