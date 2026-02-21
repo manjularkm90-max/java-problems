@@ -1,0 +1,71 @@
+
+import java.util.Scanner;
+public class HealthInsurancePremiumCalculator {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int age = sc.nextInt();
+        sc.nextLine();
+        String smokingStatus = sc.nextLine();
+        String preExistingConditions = sc.nextLine();
+        String coverageTier = sc.nextLine();
+        double basePremium = 0;
+        double riskSurcharge = 0;
+        if (age >= 18 && age <= 30) {
+
+            if (coverageTier.equalsIgnoreCase("Basic")) {
+                basePremium = 200;
+            } else if (coverageTier.equalsIgnoreCase("Standard")) {
+                basePremium = 300;
+            } else { 
+                basePremium = 400;
+            }
+
+        } else if (age <= 50) {
+
+            if (coverageTier.equalsIgnoreCase("Basic")) {
+                basePremium = 300;
+            } else if (coverageTier.equalsIgnoreCase("Standard")) {
+                basePremium = 400;
+            } else {
+                basePremium = 550;
+            }
+
+        } else { 
+
+            if (coverageTier.equalsIgnoreCase("Basic")) {
+                basePremium = 400;
+            } else if (coverageTier.equalsIgnoreCase("Standard")) {
+                basePremium = 550;
+            } else { 
+                basePremium = 700;
+            }
+        }
+        if (smokingStatus.equalsIgnoreCase("Smoker")) {
+
+            if (preExistingConditions.equalsIgnoreCase("Yes")) {
+                riskSurcharge = basePremium * 0.50;
+            } else {
+                riskSurcharge = basePremium * 0.30; 
+            }
+
+        } else { 
+
+            if (preExistingConditions.equalsIgnoreCase("Yes")) {
+                riskSurcharge = basePremium * 0.20; 
+            } else {
+                riskSurcharge = 0; 
+            }
+        }
+
+        double totalPremium = basePremium + riskSurcharge;
+        System.out.println("Age: " + age);
+        System.out.println("Smoking Status: " + smokingStatus);
+        System.out.println("Pre-existing Conditions: " + preExistingConditions);
+        System.out.println("Coverage Tier: " + coverageTier);
+        System.out.println("Base Premium: $" + basePremium);
+        System.out.println("Risk Surcharge: $" + riskSurcharge);
+        System.out.println("Total Monthly Premium: $" + totalPremium);
+    }
+}
