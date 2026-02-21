@@ -1,6 +1,6 @@
 
 import java.util.Scanner;
-public class HealthInsurancePremiumCalculator {
+public class Conditional {
 
     public static void main(String[] args) {
 
