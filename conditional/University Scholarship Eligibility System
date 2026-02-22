@@ -1,0 +1,82 @@
+
+import java.util.Scanner;
+public class Conditional {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double gpa = sc.nextDouble();
+        double familyIncome = sc.nextDouble();
+        int extracurricularScore = sc.nextInt();
+        sc.nextLine(); 
+        String scholarshipType = sc.nextLine();
+        boolean eligible = false;
+        double awardAmount = 0.0;
+        String awardCategory = "None";
+        if (scholarshipType.equalsIgnoreCase("Merit")) {
+
+            if (gpa >= 3.8) {
+                eligible = true;
+                awardAmount = 25000.0;
+                awardCategory = "Full";
+            } else if (gpa >= 3.5) {
+                eligible = true;
+                awardAmount = 15000.0;
+                awardCategory = "Partial";
+            } else if (gpa >= 3.0) {
+                eligible = true;
+                awardAmount = 5000.0;
+                awardCategory = "Minimal";
+            } else {
+                eligible = false;
+            }
+
+        } else if (scholarshipType.equalsIgnoreCase("Need-Based")) {
+
+            if (familyIncome < 40000) {
+                eligible = true;
+                if (gpa >= 3.5) {
+                    awardAmount = 20000.0;
+                    awardCategory = "Full";
+                } else {
+                    awardAmount = 10000.0;
+                    awardCategory = "Partial";
+                }
+            } else if (familyIncome < 80000) {
+                eligible = true;
+                awardAmount = 5000.0;
+                awardCategory = "Minimal";
+            } else {
+                eligible = false;
+            }
+
+        } else if (scholarshipType.equalsIgnoreCase("Sports")) {
+
+            if (extracurricularScore >= 90) {
+                eligible = true;
+                awardAmount = 18000.0;
+                awardCategory = "Full";
+            } else if (extracurricularScore >= 75) {
+                eligible = true;
+                awardAmount = 10000.0;
+                awardCategory = "Partial";
+            } else if (extracurricularScore >= 60) {
+                eligible = true;
+                awardAmount = 4000.0;
+                awardCategory = "Minimal";
+            } else {
+                eligible = false;
+            }
+
+        } else {
+            eligible = false;
+        }
+        System.out.println("GPA: " + gpa);
+        System.out.println("Family Income: $" + familyIncome);
+        System.out.println("Extracurricular Score: " + extracurricularScore);
+        System.out.println("Scholarship Type: " + scholarshipType);
+        System.out.println("Eligibility: " + (eligible ? "Eligible" : "Not Eligible"));
+        System.out.println("Award Amount: $" + awardAmount);
+        System.out.println("Award Category: " + awardCategory);
+
+        sc.close();
+    }
+}
