@@ -1,0 +1,75 @@
+
+import java.util.Scanner;
+
+public class Conditional {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int heartRate = sc.nextInt();
+        sc.nextLine(); 
+        String bloodPressure = sc.nextLine();
+        double temperature = sc.nextDouble();
+        sc.nextLine(); 
+        String symptomSeverity = sc.nextLine();
+
+        String[] bpParts = bloodPressure.split("/");
+        int systolic = Integer.parseInt(bpParts[0]);
+        int diastolic = Integer.parseInt(bpParts[1]);
+
+        String triagePriority = "";
+        int waitTime = 0;
+        String recommendedAction = "";
+        if (symptomSeverity.equalsIgnoreCase("Life-Threatening")) {
+
+            triagePriority = "Critical";
+            waitTime = 0;
+            recommendedAction = "Immediate Emergency Care";
+
+        } else if (symptomSeverity.equalsIgnoreCase("Severe")) {
+
+            if (heartRate > 130 || systolic > 180 || diastolic > 120 || temperature >= 104.0) {
+                triagePriority = "Critical";
+                waitTime = 0;
+                recommendedAction = "Immediate Emergency Care";
+            } else {
+                triagePriority = "Urgent";
+                waitTime = 10;
+                recommendedAction = "Priority Medical Attention";
+            }
+
+        } else if (symptomSeverity.equalsIgnoreCase("Moderate")) {
+
+            if (heartRate > 120 || systolic > 160 || diastolic > 100 || temperature >= 102.0) {
+                triagePriority = "Urgent";
+                waitTime = 20;
+                recommendedAction = "Doctor Evaluation Required";
+            } else {
+                triagePriority = "Standard";
+                waitTime = 45;
+                recommendedAction = "Routine Examination";
+            }
+
+        } else { 
+
+            if (heartRate < 50 || heartRate > 120 || systolic > 150 || temperature >= 101.0) {
+                triagePriority = "Standard";
+                waitTime = 60;
+                recommendedAction = "Monitor and Medical Review";
+            } else {
+                triagePriority = "Non-Urgent";
+                waitTime = 120;
+                recommendedAction = "General Consultation";
+            }
+        }
+        System.out.println("Heart Rate: " + heartRate + " bpm");
+        System.out.println("Blood Pressure: " + bloodPressure);
+        System.out.println("Temperature: " + temperature + "°F");
+        System.out.println("Symptom Severity: " + symptomSeverity);
+        System.out.println("Triage Priority: " + triagePriority);
+        System.out.println("Estimated Wait Time: " + waitTime + " minutes");
+        System.out.println("Recommended Action: " + recommendedAction);
+
+        sc.close();
+    }
+}
