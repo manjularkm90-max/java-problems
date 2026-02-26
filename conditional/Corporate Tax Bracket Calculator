@@ -1,0 +1,74 @@
+
+import java.util.Scanner;
+
+public class Conditional {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        double annualRevenue = sc.nextDouble();
+        sc.nextLine(); 
+        String businessType = sc.nextLine();
+        double deductibleExpenses = sc.nextDouble();
+        double taxCredits = sc.nextDouble();
+        double taxableIncome = annualRevenue - deductibleExpenses;
+        if (taxableIncome < 0) {
+            taxableIncome = 0;
+        }
+
+        double taxRate = 0.0;
+        if (businessType.equalsIgnoreCase("C-Corp")) {
+            taxRate = 0.21; 
+        } 
+        else if (businessType.equalsIgnoreCase("LLC")) {
+            if (taxableIncome <= 100000) {
+                taxRate = 0.10;
+            } else if (taxableIncome <= 250000) {
+                taxRate = 0.15;
+            } else {
+                taxRate = 0.20;
+            }
+        } 
+        else if (businessType.equalsIgnoreCase("S-Corp")) {
+            if (taxableIncome <= 50000) {
+                taxRate = 0.12;
+            } else if (taxableIncome <= 200000) {
+                taxRate = 0.18;
+            } else {
+                taxRate = 0.25;
+            }
+        } 
+        else if (businessType.equalsIgnoreCase("Partnership")) {
+            if (taxableIncome <= 75000) {
+                taxRate = 0.10;
+            } else if (taxableIncome <= 300000) {
+                taxRate = 0.17;
+            } else {
+                taxRate = 0.22;
+            }
+        }
+
+        double grossTax = taxableIncome * taxRate;
+        double netTax = grossTax - taxCredits;
+
+        if (netTax < 0) {
+            netTax = 0;
+        }
+
+        double effectiveTaxRate = 0.0;
+        if (annualRevenue > 0) {
+            effectiveTaxRate = (netTax / annualRevenue) * 100;
+        }
+        System.out.println("Annual Revenue: $" + annualRevenue);
+        System.out.println("Business Type: " + businessType);
+        System.out.println("Deductible Expenses: $" + deductibleExpenses);
+        System.out.println("Tax Credits: $" + taxCredits);
+        System.out.println("Taxable Income: $" + taxableIncome);
+        System.out.println("Tax Rate: " + (int)(taxRate * 100) + "%");
+        System.out.println("Gross Tax: $" + grossTax);
+        System.out.println("Net Tax After Credits: $" + netTax);
+        System.out.println("Effective Tax Rate: " + String.format("%.1f", effectiveTaxRate) + "%");
+
+        sc.close();
+    }
+}
