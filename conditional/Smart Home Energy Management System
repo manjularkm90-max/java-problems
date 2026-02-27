@@ -1,0 +1,108 @@
+
+
+ import java.util.Scanner;
+
+public class Conditional {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String timeOfDay = sc.nextLine();
+        double powerConsumption = sc.nextDouble();
+        double renewablePercentage = sc.nextDouble();
+        sc.nextLine(); 
+        String rateTier = sc.nextLine();
+
+        double baseRate = 0.0;
+        double rateMultiplier = 1.0;
+        double renewableCredit = 0.0;
+        double totalCost = 0.0;
+        double potentialSavings = 0.0;
+        if (rateTier.equalsIgnoreCase("Basic")) {
+            baseRate = 0.12;
+        } else {
+            if (rateTier.equalsIgnoreCase("Time-of-Use")) {
+                baseRate = 0.15;
+            } else {
+                if (rateTier.equalsIgnoreCase("Premium-Green")) {
+                    baseRate = 0.20;
+                }
+            }
+        }
+
+        if (rateTier.equalsIgnoreCase("Time-of-Use")) {
+
+            if (timeOfDay.equalsIgnoreCase("Peak")) {
+                rateMultiplier = 1.8;
+            } else {
+                if (timeOfDay.equalsIgnoreCase("Off-Peak")) {
+                    rateMultiplier = 1.0;
+                } else {
+                    if (timeOfDay.equalsIgnoreCase("Super-Off-Peak")) {
+                        rateMultiplier = 0.7;
+                    }
+                }
+            }
+
+        } else if (rateTier.equalsIgnoreCase("Premium-Green")) {
+
+            if (timeOfDay.equalsIgnoreCase("Peak")) {
+                rateMultiplier = 1.5;
+            } else {
+                if (timeOfDay.equalsIgnoreCase("Off-Peak")) {
+                    rateMultiplier = 1.0;
+                } else {
+                    rateMultiplier = 0.8;
+                }
+            }
+
+        } else {
+            rateMultiplier = 1.0; 
+        }
+        double grossCost = powerConsumption * baseRate * rateMultiplier;
+
+        renewableCredit = grossCost * (renewablePercentage / 100.0) * 0.05;
+
+        totalCost = grossCost - renewableCredit;
+        String recommendation = "Usage is optimized.";
+        potentialSavings = 0.0;
+
+        if (timeOfDay.equalsIgnoreCase("Peak")) {
+
+            if (rateMultiplier > 1.5) {
+                recommendation = "Shift high-power appliances to Off-Peak hours";
+                potentialSavings = powerConsumption * baseRate * (rateMultiplier - 1.0);
+            } else {
+                recommendation = "Consider increasing renewable usage during Peak hours";
+                potentialSavings = renewableCredit;
+            }
+
+        } else if (timeOfDay.equalsIgnoreCase("Off-Peak")) {
+
+            if (renewablePercentage < 20) {
+                recommendation = "Increase renewable energy contribution for more savings";
+                potentialSavings = grossCost * 0.05;
+            }
+
+        } else {
+            recommendation = "Super-Off-Peak hours detected. Ideal time for heavy appliances.";
+            potentialSavings = powerConsumption * baseRate * 0.2;
+        }
+        renewableCredit = Math.round(renewableCredit * 100.0) / 100.0;
+        totalCost = Math.round(totalCost * 100.0) / 100.0;
+        potentialSavings = Math.round(potentialSavings * 100.0) / 100.0;
+        System.out.println("Time of Day: " + timeOfDay);
+        System.out.println("Power Consumption: " + powerConsumption + " kWh");
+        System.out.println("Renewable Energy: " + renewablePercentage + "%");
+        System.out.println("Rate Tier: " + rateTier);
+        System.out.println("Base Rate: $" + baseRate + "/kWh");
+        System.out.println("Rate Multiplier: " + rateMultiplier + "x");
+        System.out.println("Renewable Credit: $" + renewableCredit);
+        System.out.println("Total Cost: $" + totalCost);
+        System.out.println("Optimization Recommendation: " + recommendation);
+        System.out.println("Potential Savings: $" + potentialSavings);
+
+        sc.close();
+    }
+}
