@@ -1,0 +1,89 @@
+
+import java.util.Scanner;
+public class Conditional12{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int age=sc.nextInt();
+        int basePremium=0;
+        sc.nextLine();
+        String vehicleType=sc.nextLine();
+        String drivingRecord=sc.nextLine();
+        String coveragelevel=sc.nextLine();
+        if(coveragelevel.equalsIgnoreCase("Basic")){
+            basePremium = 500;
+        }else if(coveragelevel.equalsIgnoreCase("Standard")){
+            basePremium = 800;
+        }else if(coveragelevel.equalsIgnoreCase("comprehensive")){
+            basePremium = 1500;
+        }
+        double agefactor=0;
+        if((age >= 16)&& (age <= 21)){
+        agefactor = 1.8;
+        }else if((age >=22)&&(age <=25)){
+        agefactor = 1.5;
+
+        }else if((age >=26)&&(age <= 40)){
+        agefactor = 1.0;
+        }else if((age >= 41) && (age <= 60)){
+        agefactor = 0.9;
+        }else{
+        agefactor = 1.1;
+        }
+        double riskfactor=0;
+        if(vehicleType.equalsIgnoreCase("sedan")){
+            riskfactor = 1.0;
+        }else if(vehicleType.equalsIgnoreCase("SUV")){
+            riskfactor = 1.2;
+        }else if(vehicleType.equalsIgnoreCase("Sports")){
+            riskfactor = 1.5;
+        }else{
+            riskfactor = 1.1;
+        }
+        int percentage = 0;
+        if(drivingRecord.equalsIgnoreCase("clean")){
+            percentage = -10;
+        }else if(drivingRecord.equalsIgnoreCase("Minor-Violations")){
+            percentage = 25;
+        }else{
+            percentage = 50;
+        }
+        double finalPremium;
+        double adjustedPremium;
+        double monthlyPremium;
+        adjustedPremium = (basePremium * agefactor * riskfactor);
+        finalPremium = adjustedPremium + (adjustedPremium *(percentage/100.0));
+        monthlyPremium = finalPremium/12.0;
+        String riskcategory;
+        if(age < 25){
+            if(drivingRecord.equalsIgnoreCase("Major-Violations")){
+                riskcategory = "high";
+            }
+            else{
+                riskcategory  = "very high";
+
+            }
+        }
+        else{
+            if(drivingRecord.equalsIgnoreCase("clean")){
+                riskcategory = "low";
+            }
+            else{  
+                riskcategory = "very low";
+            }
+        }
+        System.out.println("Driver Age:"+age);
+        System.out.println("Vehicle Type:"+vehicleType);
+        System.out.println("Driving Record:"+drivingRecord);
+        System.out.println("Coverage Level:"+coveragelevel);
+        System.out.println("Base Premium :$"+(float)basePremium);
+        System.out.println("Age Factor:"+ agefactor + 'x');
+        System.out.println("Vehicle Risk Factor:"+riskfactor+'x');
+        System.out.println("Record Adjustment:"+ percentage + "%");
+        System.out.println("monthlyPremium:"+ monthlyPremium);
+        System.out.println("finalPremium:"+ finalPremium);
+        System.out.println("riskcategory:"+ riskcategory);
+
+
+
+    }
+}
