@@ -1,0 +1,83 @@
+
+import java.util.Scanner;
+
+public class Conditional11 {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        String orderType = sc.nextLine();
+        String loyaltyStatus = sc.nextLine();
+        double orderValue = sc.nextDouble();
+        sc.nextLine(); 
+        String timeSlot = sc.nextLine();
+
+        double Percentage = 0;
+        double Percentage = 0;
+        double serviceFee = 0;
+        String kitchenPriority = "";
+        int prepTime = 0;
+        if (loyaltyStatus.equalsIgnoreCase("Gold")) {
+            Percentage = 15;
+        } else if (loyaltyStatus.equalsIgnoreCase("Silver")) {
+            Percentage = 10;
+        } else if (loyaltyStatus.equalsIgnoreCase("Bronze")) {
+            Percentage = 5;
+        } else {
+            Percentage = 0;    
+        }
+        if (orderType.equalsIgnoreCase("Delivery")) {
+            serviceFee = orderValue * 0.10; 
+        } else if (orderType.equalsIgnoreCase("Takeout")) {
+            serviceFee = orderValue * 0.05; 
+        } else {
+            serviceFee = 0; 
+        }
+        if (timeSlot.equalsIgnoreCase("Peak")) {
+            Percentage = 0;
+        } else if (timeSlot.equalsIgnoreCase("Late-Night")) {
+            Percentage = 5;
+        } else {
+            Percentage = 0;
+        }
+        double discountAmount = orderValue * (baseDiscountPercent / 100);
+        double timeAdjustmentAmount = orderValue * (timeAdjustmentPercent / 100);
+
+        double finalAmount = orderValue - discountAmount + serviceFee + timeAdjustmentAmount;
+        if (timeSlot.equalsIgnoreCase("Peak")) {
+
+            if (orderType.equalsIgnoreCase("Delivery")) {
+                kitchenPriority = "High";
+                prepTime = 25;
+            } else if (orderType.equalsIgnoreCase("Takeout")) {
+                kitchenPriority = "Medium";
+                prepTime = 20;
+            } else {
+                kitchenPriority = "Low";
+                prepTime = 15;
+            }
+
+        } else {
+
+            if (orderValue >= 100) {
+                kitchenPriority = "High";
+                prepTime = 30;
+            } else if (orderValue >= 50) {
+                kitchenPriority = "Medium";
+                prepTime = 20;
+            } else {
+                kitchenPriority = "Low";
+                prepTime = 15;
+            }
+        }
+        System.out.println("Order Type: " + orderType);
+        System.out.println("Loyalty Status: " + loyaltyStatus);
+        System.out.println("Order Value: $" + orderValue);
+        System.out.println("Time Slot: " + timeSlot);
+        System.out.println("Base Discount: " + (int)baseDiscountPercent + "%");
+        System.out.println("Time-Based Adjustment: " + (int)timeAdjustmentPercent + "%");
+        System.out.println("Service Fee: $" + serviceFee);
+        System.out.println("Final Amount: $" + finalAmount);
+        System.out.println("Kitchen Priority: " + kitchenPriority);
+        System.out.println("Estimated Prep Time: " + prepTime + " minutes");
+    }
+}
