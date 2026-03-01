@@ -1,0 +1,88 @@
+
+import java.util.Scanner;
+
+public class UniversityFeeCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String studentStatus = sc.nextLine();
+        int creditHours = sc.nextInt();
+        sc.nextLine(); 
+        String programType = sc.nextLine();
+        String residency = sc.nextLine();
+
+        double baseTuitionPerCredit = 0.0;
+        double residencyMultiplier = 1.0;
+        double programFee = 0.0;
+        double studentActivityFee = 0.0;
+        double totalFee = 0.0;
+        String feeCategory = "";
+        if (programType.equals("Undergraduate")) {
+            if (studentStatus.equals("Full-Time")) {
+                baseTuitionPerCredit = 350.0;
+            } else if (studentStatus.equals("Part-Time")) {
+                baseTuitionPerCredit = 300.0;
+            } else {
+                baseTuitionPerCredit = 250.0;
+            }
+        } else if (programType.equals("Graduate")) {
+            if (studentStatus.equals("Full-Time")) {
+                baseTuitionPerCredit = 500.0;
+            } else if (studentStatus.equals("Part-Time")) {
+                baseTuitionPerCredit = 450.0;
+            } else {
+                baseTuitionPerCredit = 400.0;
+            }
+        } else { 
+            if (studentStatus.equals("Full-Time")) {
+                baseTuitionPerCredit = 700.0;
+            } else if (studentStatus.equals("Part-Time")) {
+                baseTuitionPerCredit = 650.0;
+            } else {
+                baseTuitionPerCredit = 600.0;
+            }
+        }
+        if (residency.equals("In-State")) {
+            residencyMultiplier = 1.0;
+        } else if (residency.equals("Out-of-State")) {
+            residencyMultiplier = 1.5;
+        } else {
+            residencyMultiplier = 2.0;
+        }
+        if (programType.equals("Undergraduate")) {
+            programFee = 500.0;
+        } else if (programType.equals("Graduate")) {
+            programFee = 800.0;
+        } else {
+            programFee = 1200.0;
+        }
+        if (studentStatus.equals("Full-Time")) {
+            studentActivityFee = 200.0;
+        } else if (studentStatus.equals("Part-Time")) {
+            studentActivityFee = 120.0;
+        } else {
+            studentActivityFee = 80.0;
+        }
+        totalFee = (baseTuitionPerCredit * creditHours * residencyMultiplier)
+                + programFee + studentActivityFee;
+
+        if (totalFee < 4000) {
+            feeCategory = "Reduced";
+        } else if (totalFee <= 8000) {
+            feeCategory = "Standard";
+        } else {
+            feeCategory = "Premium";
+        }
+        System.out.println("Student Status: " + studentStatus);
+        System.out.println("Credit Hours: " + creditHours);
+        System.out.println("Program Type: " + programType);
+        System.out.println("Residency: " + residency);
+        System.out.println("Base Tuition Per Credit: $" + baseTuitionPerCredit);
+        System.out.println("Residency Multiplier: " + residencyMultiplier + "x");
+        System.out.println("Program Fee: $" + programFee);
+        System.out.println("Student Activity Fee: $" + studentActivityFee);
+        System.out.println("Total Registration Fee: $" + totalFee);
+        System.out.println("Fee Category: " + feeCategory);
+
+        sc.close();
+    }
+}
