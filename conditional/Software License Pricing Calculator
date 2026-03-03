@@ -1,0 +1,88 @@
+
+import java.util.Scanner;
+public class Conditional15{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int userCount = sc.nextInt();
+        sc.nextLine();
+        String  licenseType = sc.nextLine();
+        String  supportLevel = sc.nextLine();
+        int contractYears = sc.nextInt();
+        double baseprice = 0;
+        if(licenseType.equalsIgnoreCase("Standard")){
+            baseprice = 60;
+        }else if(licenseType.equalsIgnoreCase("Professional")){
+            baseprice = 120;
+        }else if(licenseType.equalsIgnoreCase("enterprise")){
+            baseprice = 200;
+        }
+        int discount = 0;
+        if((userCount >= 1) && (userCount <= 50)){
+            discount = 0;
+
+        }else if((userCount >= 51)&&(userCount <= 200)){
+            discount = 15;
+        }else if((userCount >= 201) && (userCount <= 500)){
+            discount = 20;
+
+        }else if((userCount >= 501) && (userCount <= 1000)){
+            discount = 25;
+        }else{
+            discount = 35;
+        }
+        double supportLevelfee = 0;
+        if(supportLevel.equalsIgnoreCase(" Basic")){
+            supportLevelfee = 10;
+
+        }else if(supportLevel.equalsIgnoreCase("Priority")){
+            supportLevelfee = 30;
+        }else{
+            supportLevelfee = 80;
+        }
+        int multi = 0;
+        if(contractYears == 1){
+            multi = 0;
+
+        }else if(contractYears == 2){
+            multi = 5;
+        }else if(contractYears == 3){
+            multi = 10;
+        }else{
+            multi = 20;
+        }
+        double discountedBase = 0;
+        double annualperuser = 0;
+        double totalannual = 0;
+        double contractvalue = 0;
+        discountedBase = baseprice * (1 - discount/100.0);
+        annualperuser = (discountedBase + supportLevelfee) * (1 - multi/100.0);
+        totalannual = annualperuser * userCount;
+        contractvalue = totalannual * contractYears;
+        String assign = "";
+        if(userCount < 200){
+            assign = "smallbussiness";
+
+        }else if((userCount >= 200) && (userCount <= 1000)){
+            assign = "mid-market";
+        }else{
+            assign = "Enterprise";
+        }
+
+
+
+
+        System.out.println("User Count:"+userCount);
+        System.out.println("License Type:"+licenseType);
+        System.out.println("Support Level:"+supportLevel);
+        System.out.println("Contract Duration:"+contractYears+" "+"years");
+        System.out.println("Base Price Per User:"+baseprice);
+        System.out.println("Volume Discount:"+discount+"%");
+        System.out.println("Support Fee Per User:$"+supportLevelfee);
+        System.out.println("Multi-Year Discount:"+multi+"%");
+        System.out.println("Annual Cost Per User:"+annualperuser);
+        System.out.println("Total Annual Cost:"+totalannual);
+        System.out.println("Total Contract Value:"+contractvalue);
+        System.out.println("Pricing Tier:"+assign);
+    }
+
+
