@@ -1,0 +1,94 @@
+
+public class Conditional {
+
+    public static void main(String[] args) {
+        double dataGB = 15.0;
+        int callMinutes = 800;
+        String internationalUsage = "Moderate";
+        String deviceType = "Smartphone";
+
+        String recommendedPlan = "";
+        double basePlanCost = 0.0;
+        double dataOverage = 0.0;
+        double callOverage = 0.0;
+        double internationalFee = 0.0;
+        double deviceFee = 0.0;
+        double totalMonthlyCost = 0.0;
+        double potentialSavings = 0.0;
+        String planCategory = "";
+
+        if (dataGB <= 5 && callMinutes <= 500) {
+            recommendedPlan = "Basic Saver";
+            basePlanCost = 30.0;
+            planCategory = "Budget";
+
+            if (dataGB > 5) {
+                dataOverage = (dataGB - 5) * 5;
+            }
+            if (callMinutes > 500) {
+                callOverage = (callMinutes - 500) * 0.10;
+            }
+
+        } else {
+            if (dataGB <= 15 && callMinutes <= 1000) {
+                recommendedPlan = "Premium Unlimited";
+                basePlanCost = 70.0;
+                planCategory = "Premium";
+
+            } else {
+                recommendedPlan = "Ultimate Max";
+                basePlanCost = 90.0;
+                planCategory = "Unlimited";
+            }
+        }
+        if (internationalUsage.equalsIgnoreCase("None")) {
+            internationalFee = 0.0;
+        } else {
+            if (internationalUsage.equalsIgnoreCase("Light")) {
+                internationalFee = 5.0;
+            } else {
+                if (internationalUsage.equalsIgnoreCase("Moderate")) {
+                    internationalFee = 15.0;
+                } else {
+                    if (internationalUsage.equalsIgnoreCase("Heavy")) {
+                        internationalFee = 25.0;
+                    }
+                }
+            }
+        }
+        if (deviceType.equalsIgnoreCase("Basic")) {
+            deviceFee = 0.0;
+        } else {
+            if (deviceType.equalsIgnoreCase("Smartphone")) {
+                deviceFee = 10.0;
+            } else {
+                if (deviceType.equalsIgnoreCase("Tablet")) {
+                    deviceFee = 15.0;
+                } else {
+                    if (deviceType.equalsIgnoreCase("Hotspot")) {
+                        deviceFee = 20.0;
+                    }
+                }
+            }
+        }
+        totalMonthlyCost = basePlanCost + dataOverage + callOverage + internationalFee + deviceFee;
+        if (recommendedPlan.equals("Ultimate Max") && dataGB <= 15) {
+            potentialSavings = 20.0;
+        } else {
+            potentialSavings = 0.0;
+        }
+        System.out.println("Data Usage: " + dataGB + " GB");
+        System.out.println("Call Minutes: " + callMinutes + " minutes");
+        System.out.println("International Usage: " + internationalUsage);
+        System.out.println("Device Type: " + deviceType);
+        System.out.println("Recommended Plan: " + recommendedPlan);
+        System.out.println("Base Plan Cost: $" + basePlanCost);
+        System.out.println("Data Overage: $" + dataOverage);
+        System.out.println("Call Overage: $" + callOverage);
+        System.out.println("International Fee: $" + internationalFee);
+        System.out.println("Device Fee: $" + deviceFee);
+        System.out.println("Total Monthly Cost: $" + totalMonthlyCost);
+        System.out.println("Potential Savings: $" + potentialSavings);
+        System.out.println("Plan Category: " + planCategory);
+    }
+}
