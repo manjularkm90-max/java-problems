@@ -1,0 +1,113 @@
+
+public class Conditional {
+
+    public static void main(String[] args) {
+        int stockPercentage = 70;
+        int investmentYears = 15;
+        String riskTolerance = "Moderate";
+        String marketVolatility = "Medium";
+
+        int bondPercentage = 100 - stockPercentage;
+        int riskScore = 0;
+        if (stockPercentage <= 30) {
+            riskScore = 30;
+        } else {
+            if (stockPercentage <= 50) {
+                riskScore = 45;
+            } else {
+                if (stockPercentage <= 70) {
+                    riskScore = 60;
+                } else {
+                    riskScore = 80;
+                }
+            }
+        }
+
+        
+        if (investmentYears >= 20) {
+            riskScore -= 10;
+        } else {
+            if (investmentYears <= 5) {
+                riskScore += 10;
+            }
+        }
+        if (marketVolatility.equalsIgnoreCase("High")) {
+            riskScore += 10;
+        } else {
+            if (marketVolatility.equalsIgnoreCase("Low")) {
+                riskScore -= 5;
+            }
+        }
+        if (riskScore < 0) riskScore = 0;
+        if (riskScore > 100) riskScore = 100;
+
+        String riskCategory = "";
+        if (riskScore <= 35) {
+            riskCategory = "Low";
+        } else {
+            if (riskScore <= 60) {
+                riskCategory = "Moderate";
+            } else {
+                if (riskScore <= 80) {
+                    riskCategory = "High";
+                } else {
+                    riskCategory = "Very High";
+                }
+            }
+        }
+
+        String alignmentStatus = "";
+        if (riskTolerance.equalsIgnoreCase("Conservative")) {
+            if (riskScore <= 40) {
+                alignmentStatus = "Well Aligned";
+            } else {
+                alignmentStatus = "Misaligned";
+            }
+        } else {
+            if (riskTolerance.equalsIgnoreCase("Moderate")) {
+                if (riskScore > 40 && riskScore <= 65) {
+                    alignmentStatus = "Well Aligned";
+                } else {
+                    alignmentStatus = "Acceptable";
+                }
+            } else {
+                if (riskTolerance.equalsIgnoreCase("Aggressive")) {
+                    if (riskScore >= 70) {
+                        alignmentStatus = "Well Aligned";
+                    } else {
+                        alignmentStatus = "Misaligned";
+                    }
+                }
+            }
+        }
+        String recommendation = "";
+        String rebalancing = "";
+
+        if (alignmentStatus.equals("Well Aligned")) {
+            recommendation = "Portfolio is appropriately balanced for your profile";
+            rebalancing = "No action needed";
+        } else {
+            if (alignmentStatus.equals("Acceptable")) {
+                recommendation = "Minor adjustments may improve risk alignment";
+                rebalancing = "Consider small asset reallocation";
+            } else {
+                recommendation = "Portfolio risk does not match your tolerance";
+                if (riskTolerance.equalsIgnoreCase("Conservative")) {
+                    rebalancing = "Reduce stock allocation and increase bonds";
+                } else {
+                    rebalancing = "Increase stock allocation for growth potential";
+                }
+            }
+        }
+        System.out.println("Stock Allocation: " + stockPercentage + "%");
+        System.out.println("Bond Allocation: " + bondPercentage + "%");
+        System.out.println("Investment Horizon: " + investmentYears + " years");
+        System.out.println("Risk Tolerance: " + riskTolerance);
+        System.out.println("Market Volatility: " + marketVolatility);
+        System.out.println("Portfolio Risk Score: " + riskScore + "/100");
+        System.out.println("Risk Category: " + riskCategory);
+        System.out.println("Alignment Status: " + alignmentStatus);
+        System.out.println("Recommendation: " + recommendation);
+        System.out.println("Suggested Rebalancing: " + rebalancing);
+    }
+}
