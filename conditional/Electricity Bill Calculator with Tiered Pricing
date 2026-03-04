@@ -1,0 +1,108 @@
+
+import java.util.Scanner;
+
+public class Conditional {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int unitsConsumed = sc.nextInt();
+        sc.nextLine();
+        String customerType = sc.nextLine();
+        String season = sc.nextLine();
+        String paymentMethod = sc.nextLine();
+
+        double tier1Cost = 0.0;
+        double tier2Cost = 0.0;
+        double tier3Cost = 0.0;
+        double tier4Cost = 0.0;
+
+        double rate1 = 0.0, rate2 = 0.0, rate3 = 0.0, rate4 = 0.0;
+        double seasonalAdjustmentPercent = 0.0;
+        double paymentDiscountPercent = 0.0;
+        if (customerType.equalsIgnoreCase("Residential")) {
+            rate1 = 0.10;
+            rate2 = 0.15;
+            rate3 = 0.25;
+            rate4 = 0.35;
+        } else {
+            if (customerType.equalsIgnoreCase("Commercial")) {
+                rate1 = 0.12;
+                rate2 = 0.18;
+                rate3 = 0.30;
+                rate4 = 0.40;
+            } else {
+                if (customerType.equalsIgnoreCase("Industrial")) {
+                    rate1 = 0.15;
+                    rate2 = 0.22;
+                    rate3 = 0.35;
+                    rate4 = 0.50;
+                }
+            }
+        }
+        if (unitsConsumed > 0) {
+            if (unitsConsumed <= 100) {
+                tier1Cost = unitsConsumed * rate1;
+            } else {
+                tier1Cost = 100 * rate1;
+
+                if (unitsConsumed <= 300) {
+                    tier2Cost = (unitsConsumed - 100) * rate2;
+                } else {
+                    tier2Cost = 200 * rate2;
+
+                    if (unitsConsumed <= 500) {
+                        tier3Cost = (unitsConsumed - 300) * rate3;
+                    } else {
+                        tier3Cost = 200 * rate3;
+                        tier4Cost = (unitsConsumed - 500) * rate4;
+                    }
+                }
+            }
+        }
+
+        double subtotal = tier1Cost + tier2Cost + tier3Cost + tier4Cost;
+        if (season.equalsIgnoreCase("Summer")) {
+            seasonalAdjustmentPercent = 15.0;
+        } else {
+            if (season.equalsIgnoreCase("Winter")) {
+                seasonalAdjustmentPercent = 5.0;
+            } else {
+                seasonalAdjustmentPercent = 0.0;
+            }
+        }
+
+        subtotal = subtotal + (subtotal * seasonalAdjustmentPercent / 100);
+        if (paymentMethod.equalsIgnoreCase("Auto-Pay")) {
+            paymentDiscountPercent = 5.0;
+        } else {
+            if (paymentMethod.equalsIgnoreCase("Online")) {
+                paymentDiscountPercent = 2.0;
+            } else {
+                paymentDiscountPercent = 0.0;
+            }
+        }
+
+        double totalBill = subtotal - (subtotal * paymentDiscountPercent / 100);
+        totalBill = Math.round(totalBill * 100.0) / 100.0;
+
+        double averageRate = 0.0;
+        if (unitsConsumed > 0) {
+            averageRate = totalBill / unitsConsumed;
+            averageRate = Math.round(averageRate * 100.0) / 100.0;
+        }
+        System.out.println("Units Consumed: " + unitsConsumed + " kWh");
+        System.out.println("Customer Type: " + customerType);
+        System.out.println("Season: " + season);
+        System.out.println("Payment Method: " + paymentMethod);
+        System.out.println("Tier 1 Cost (0-100): $" + tier1Cost);
+        System.out.println("Tier 2 Cost (101-300): $" + tier2Cost);
+        System.out.println("Tier 3 Cost (301-500): $" + tier3Cost);
+        System.out.println("Tier 4 Cost (501+): $" + tier4Cost);
+        System.out.println("Seasonal Adjustment: " + (int)seasonalAdjustmentPercent + "%");
+        System.out.println("Payment Discount: " + (int)paymentDiscountPercent + "%");
+        System.out.println("Total Bill: $" + totalBill);
+        System.out.println("Average Rate: $" + averageRate + "/kWh");
+
+    }
+}
