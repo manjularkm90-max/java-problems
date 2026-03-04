@@ -1,0 +1,92 @@
+
+public class FoodDeliveryCalculator {
+
+    public static void main(String[] args) {
+        double distanceMiles = 3.5;
+        double orderValue = 45.00;
+        String timeSlot = "Dinner";
+        String weatherCondition = "Rain";
+
+        double baseFee = 3.0;
+        double distanceSurcharge = 0.0;
+        double peakSurcharge = 0.0;
+        double weatherSurcharge = 0.0;
+        double orderDiscount = 0.0;
+        double finalFee = 0.0;
+        int estimatedTime = 0;
+        String servicePriority = "";
+        distanceSurcharge = distanceMiles * 1.0;
+
+        if (timeSlot.equalsIgnoreCase("Breakfast")) {
+            peakSurcharge = 0.0;
+        } else {
+            if (timeSlot.equalsIgnoreCase("Lunch")) {
+                peakSurcharge = 1.5;
+            } else {
+                if (timeSlot.equalsIgnoreCase("Dinner")) {
+                    peakSurcharge = 2.0;
+                } else {
+                    if (timeSlot.equalsIgnoreCase("Late-Night")) {
+                        peakSurcharge = 2.5;
+                    }
+                }
+            }
+        }
+        if (weatherCondition.equalsIgnoreCase("Clear")) {
+            weatherSurcharge = 0.0;
+        } else {
+            if (weatherCondition.equalsIgnoreCase("Rain")) {
+                weatherSurcharge = 2.0;
+            } else {
+                if (weatherCondition.equalsIgnoreCase("Snow")) {
+                    weatherSurcharge = 3.5;
+                } else {
+                    if (weatherCondition.equalsIgnoreCase("Storm")) {
+                        weatherSurcharge = 5.0;
+                    }
+                }
+            }
+        }
+        if (orderValue >= 50) {
+            orderDiscount = 3.0;
+        } else {
+            if (orderValue >= 30) {
+                orderDiscount = 2.0;
+            } else {
+                orderDiscount = 0.0;
+            }
+        }
+        finalFee = baseFee + distanceSurcharge + peakSurcharge + weatherSurcharge - orderDiscount;
+        estimatedTime = 20 + (int)(distanceMiles * 3);
+
+        if (weatherCondition.equalsIgnoreCase("Rain") || 
+            weatherCondition.equalsIgnoreCase("Snow") || 
+            weatherCondition.equalsIgnoreCase("Storm")) {
+            estimatedTime += 5;
+        }
+        if (timeSlot.equalsIgnoreCase("Dinner") || 
+            timeSlot.equalsIgnoreCase("Late-Night")) {
+            servicePriority = "High";
+        } else {
+            if (timeSlot.equalsIgnoreCase("Lunch")) {
+                servicePriority = "Express";
+            } else {
+                servicePriority = "Standard";
+            }
+        }
+
+    
+        System.out.println("Delivery Distance: " + distanceMiles + " miles");
+        System.out.println("Order Value: $" + orderValue);
+        System.out.println("Time Slot: " + timeSlot);
+        System.out.println("Weather Condition: " + weatherCondition);
+        System.out.println("Base Delivery Fee: $" + baseFee);
+        System.out.println("Distance Surcharge: $" + distanceSurcharge);
+        System.out.println("Peak Time Surcharge: $" + peakSurcharge);
+        System.out.println("Weather Surcharge: $" + weatherSurcharge);
+        System.out.println("Order Value Discount: $" + orderDiscount);
+        System.out.println("Final Delivery Fee: $" + finalFee);
+        System.out.println("Estimated Delivery Time: " + estimatedTime + " minutes");
+        System.out.println("Service Priority: " + servicePriority);
+    }
+}
