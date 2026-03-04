@@ -1,0 +1,112 @@
+
+import java.util.Scanner;
+
+public class Conditional19.java {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        String movieFormat = sc.nextLine();
+        String showTime = sc.nextLine();
+        String seatCategory = sc.nextLine();
+        String customerType = sc.nextLine();
+
+        double basePrice = 12.0;
+        double formatSurcharge = 0.0;
+        double seatUpgradeFee = 0.0;
+        double timeAdjustmentPercent = 0.0;
+        double customerDiscountPercent = 0.0;
+        if (movieFormat.equalsIgnoreCase("2D")) {
+            formatSurcharge = 0.0;
+        } else {
+            if (movieFormat.equalsIgnoreCase("3D")) {
+                formatSurcharge = 4.0;
+            } else {
+                if (movieFormat.equalsIgnoreCase("IMAX")) {
+                    formatSurcharge = 8.0;
+                } else {
+                    if (movieFormat.equalsIgnoreCase("4DX")) {
+                        formatSurcharge = 10.0;
+                    }
+                }
+            }
+        }
+        if (seatCategory.equalsIgnoreCase("Standard")) {
+            seatUpgradeFee = 0.0;
+        } else {
+            if (seatCategory.equalsIgnoreCase("Premium")) {
+                seatUpgradeFee = 5.0;
+            } else {
+                if (seatCategory.equalsIgnoreCase("Recliner")) {
+                    seatUpgradeFee = 7.0;
+                }
+            }
+        }
+
+        
+        if (showTime.equalsIgnoreCase("Matinee")) {
+            timeAdjustmentPercent = -10.0;
+        } else {
+            if (showTime.equalsIgnoreCase("Evening")) {
+                timeAdjustmentPercent = 0.0;
+            } else {
+                if (showTime.equalsIgnoreCase("Prime-Time")) {
+                    timeAdjustmentPercent = 20.0;
+                } else {
+                    if (showTime.equalsIgnoreCase("Late-Night")) {
+                        timeAdjustmentPercent = -5.0;
+                    }
+                }
+            }
+        }
+        if (customerType.equalsIgnoreCase("Adult")) {
+            customerDiscountPercent = 0.0;
+        } else {
+            if (customerType.equalsIgnoreCase("Senior")) {
+                customerDiscountPercent = 15.0;
+            } else {
+                if (customerType.equalsIgnoreCase("Student")) {
+                    customerDiscountPercent = 10.0;
+                } else {
+                    if (customerType.equalsIgnoreCase("Child")) {
+                        customerDiscountPercent = 20.0;
+                    }
+                }
+            }
+        }
+        double subtotal = basePrice + formatSurcharge + seatUpgradeFee;
+        double timeAdjustedPrice = subtotal + (subtotal * timeAdjustmentPercent / 100);
+        double finalPrice = timeAdjustedPrice - (timeAdjustedPrice * customerDiscountPercent / 100);
+        String voucher = "No";
+        if (finalPrice > 35) {
+            voucher = "Yes";
+        }
+        String pricingCategory = "";
+        if (finalPrice <= 15) {
+            pricingCategory = "Value";
+        } else {
+            if (finalPrice <= 25) {
+                pricingCategory = "Standard";
+            } else {
+                if (finalPrice <= 35) {
+                    pricingCategory = "Premium";
+                } else {
+                    pricingCategory = "Luxury";
+                }
+            }
+        }
+        System.out.println("Movie Format: " + movieFormat);
+        System.out.println("Show Time: " + showTime);
+        System.out.println("Seat Category: " + seatCategory);
+        System.out.println("Customer Type: " + customerType);
+        System.out.println("Base Ticket Price: $" + basePrice);
+        System.out.println("Format Surcharge: $" + formatSurcharge);
+        System.out.println("Seat Upgrade Fee: $" + seatUpgradeFee);
+        System.out.println("Time-Based Adjustment: " + (int)timeAdjustmentPercent + "%");
+        System.out.println("Customer Discount: " + (int)customerDiscountPercent + "%");
+        System.out.println("Final Ticket Price: $" + finalPrice);
+        System.out.println("Concession Voucher: " + voucher);
+        System.out.println("Pricing Category: " + pricingCategory);
+
+    }
+}
