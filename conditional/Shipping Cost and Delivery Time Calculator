@@ -1,0 +1,92 @@
+
+import java.util.Scanner;
+
+public class Conditional {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        double packageWeight = sc.nextDouble();
+        sc.nextLine();
+        String destinationZone = sc.nextLine();
+        String shippingSpeed = sc.nextLine();
+        String packageSize = sc.nextLine();
+
+        double baseRate = 0.0;
+        double weightSurcharge = 0.0;
+        double zoneMultiplier = 1.0;
+        double sizeSurcharge = 0.0;
+        int deliveryDays = 0;
+        String serviceLevel = "";
+        if (shippingSpeed.equalsIgnoreCase("Economy")) {
+            baseRate = 10.0;
+            deliveryDays = 7;
+            serviceLevel = "Budget";
+        } else {
+            if (shippingSpeed.equalsIgnoreCase("Standard")) {
+                baseRate = 15.0;
+                deliveryDays = 5;
+                serviceLevel = "Standard";
+            } else {
+                if (shippingSpeed.equalsIgnoreCase("Express")) {
+                    baseRate = 25.0;
+                    deliveryDays = 2;
+                    serviceLevel = "Priority";
+                } else {
+                    if (shippingSpeed.equalsIgnoreCase("Overnight")) {
+                        baseRate = 40.0;
+                        deliveryDays = 1;
+                        serviceLevel = "Premium";
+                    }
+                }
+            }
+        }
+
+        weightSurcharge = packageWeight * 1.0;
+        if (destinationZone.equalsIgnoreCase("Local")) {
+            zoneMultiplier = 1.0;
+        } else {
+            if (destinationZone.equalsIgnoreCase("Regional")) {
+                zoneMultiplier = 1.2;
+            } else {
+                if (destinationZone.equalsIgnoreCase("National")) {
+                    zoneMultiplier = 1.5;
+                } else {
+                    if (destinationZone.equalsIgnoreCase("International")) {
+                        zoneMultiplier = 2.5;
+                    }
+                }
+            }
+        }
+
+        if (packageSize.equalsIgnoreCase("Small")) {
+            sizeSurcharge = 0.0;
+        } else {
+            if (packageSize.equalsIgnoreCase("Medium")) {
+                sizeSurcharge = 5.0;
+            } else {
+                if (packageSize.equalsIgnoreCase("Large")) {
+                    sizeSurcharge = 10.0;
+                } else {
+                    if (packageSize.equalsIgnoreCase("Oversized")) {
+                        sizeSurcharge = 20.0;
+                    }
+                }
+            }
+        }
+        double totalCost = (baseRate + weightSurcharge) * zoneMultiplier + sizeSurcharge;
+        System.out.println("Package Weight: " + packageWeight + " lbs");
+        System.out.println("Destination Zone: " + destinationZone);
+        System.out.println("Shipping Speed: " + shippingSpeed);
+        System.out.println("Package Size: " + packageSize);
+        System.out.println("Base Shipping Rate: $" + baseRate);
+        System.out.println("Weight Surcharge: $" + weightSurcharge);
+        System.out.println("Zone Multiplier: " + zoneMultiplier + "x");
+        System.out.println("Size Surcharge: $" + sizeSurcharge);
+        System.out.println("Total Shipping Cost: $" + totalCost);
+        System.out.println("Estimated Delivery: " + deliveryDays + " business days");
+        System.out.println("Service Level: " + serviceLevel);
+
+        
+    }
+}
