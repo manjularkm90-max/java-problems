@@ -1,0 +1,92 @@
+
+import java.util.Scanner;
+public class Conditional16{
+public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    String roomcategory = sc.nextLine();
+    String season = sc.nextLine();
+    int nightsbook = sc.nextInt();
+    sc.nextLine();
+    String loyaltytier = sc.nextLine();
+    double BaseRate = 0;
+    if(roomcategory.equalsIgnoreCase("Standard")){
+        BaseRate = 150;
+
+    }else if(roomcategory.equalsIgnoreCase("Deluxe")){
+        BaseRate = 300;
+    }else if(roomcategory.equalsIgnoreCase("Suite")){
+        BaseRate = 500;
+    }else{
+        BaseRate = 1000;
+    }
+    double seasonal = 0;
+    if(season.equalsIgnoreCase("Off-Peak ")){
+        seasonal = 0.7;
+
+    }else if(season.equalsIgnoreCase("Regular")){
+        seasonal = 1.0;
+    }else if(season.equalsIgnoreCase("Peak")){
+        seasonal = 1.5;
+    }else{
+        seasonal = 2.0;
+    }
+    int exdiscount = 0;
+    if((nightsbook >=1) && (nightsbook <= 4)){
+        exdiscount = 0;
+    }else if((nightsbook >= 5) && (nightsbook <= 7)){
+        exdiscount = 5;
+    }else if((nightsbook >= 8) && (nightsbook <= 14)){
+        exdiscount = 10;
+    }else{
+        exdiscount = 20;
+    }
+    int discount = 0;
+    if(loyaltytier.equalsIgnoreCase("None")){
+        discount = 0;
+
+    }else if(loyaltytier.equalsIgnoreCase("Member")){
+        discount = 10;
+    }else if(loyaltytier.equalsIgnoreCase("Gold")){
+        discount = 15;
+    }else{
+        discount = 20;
+    }
+    double nightrate = 0;
+    double discountedrate = 0;
+    double totalcost =0;
+    nightrate = BaseRate * seasonal;
+    discountedrate = nightrate * (1 - exdiscount)*(1 - discount/100.0);
+    totalcost = discountedrate * nightsbook;
+    String upgrades = " ";
+    if(roomcategory.equalsIgnoreCase("Deluxe")){
+        else if(loyaltytier.equalsIgnoreCase("Gold")){
+            upgrades = "Free breakfast and spa access";
+        }
+    }else{
+        if(roomcategory.equalsIgnoreCase(" Presidential")){
+           else if(loyaltytier.equalsIgnoreCase("Platinum")){
+            upgrades = " Concierge service, airport transfer, and fine dining";
+        }
+        
+    }else{
+        upgrades = "None";
+    }
+    
+  
+
+
+
+    System.out.println("Room Category:"+roomcategory);
+    System.out.println("Season:"+season);
+    System.out.println("Nights Booked:"+nightsbook);
+    System.out.println("Loyalty Tier:"+loyaltytier);
+    System.out.println("Base Rate Per Night:$"+BaseRate);
+    System.out.println("Seasonal Multiplier:"+seasonal+'x'); 
+    System.out.println("Extended stay discount:"+exdiscount+"%");
+    System.out.println("Loyalty Discount:"+ discount +"%");
+    System.out.println("Nightly Rate:$"+discountedrate);
+    System.out.println("Total Booking Cost:$"+totalcost);
+    System.out.println("Complimentary Upgrades:"+ upgrades);
+    
+    }
+}
