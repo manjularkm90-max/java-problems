@@ -1,0 +1,87 @@
+
+
+import java.util.Scanner;
+
+public class Conditional {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int storageGB = sc.nextInt();
+        int userCount = sc.nextInt();
+        sc.nextLine();
+        String backupFrequency = sc.nextLine();
+        String supportTier = sc.nextLine();
+
+        double baseStorageCost = 0.0;
+        double perUserFee = 0.0;
+        double backupPremium = 0.0;
+        double supportFee = 0.0;
+        double monthlySubscription = 0.0;
+        double annualSubscription = 0.0;
+        int annualDiscountPercent = 10;
+
+        String recommendedPlan = "";
+        String includedFeatures = "";
+        baseStorageCost = storageGB * 0.05;
+        perUserFee = userCount * 5.0;
+        if (backupFrequency.equalsIgnoreCase("Daily")) {
+            backupPremium = 5.0;
+        } else {
+            if (backupFrequency.equalsIgnoreCase("Hourly")) {
+                backupPremium = 15.0;
+            } else {
+                if (backupFrequency.equalsIgnoreCase("Real-Time")) {
+                    backupPremium = 25.0;
+                }
+            }
+        }
+        if (supportTier.equalsIgnoreCase("Community")) {
+            supportFee = 0.0;
+        } else {
+            if (supportTier.equalsIgnoreCase("Standard")) {
+                supportFee = 20.0;
+            } else {
+                if (supportTier.equalsIgnoreCase("Priority")) {
+                    supportFee = 50.0;
+                } else {
+                    if (supportTier.equalsIgnoreCase("Enterprise")) {
+                        supportFee = 100.0;
+                    }
+                }
+            }
+        }
+        monthlySubscription = baseStorageCost + perUserFee + backupPremium + supportFee;
+        annualSubscription = (monthlySubscription * 12) * 0.90;
+        if (userCount <= 2 && storageGB <= 100) {
+            recommendedPlan = "Personal";
+            includedFeatures = "Basic storage, community support";
+        } else {
+            if (userCount <= 20 && storageGB <= 1000) {
+                recommendedPlan = "Team";
+                includedFeatures = "Version history, file sharing, basic analytics";
+            } else {
+                if (userCount <= 200 && storageGB <= 5000) {
+                    recommendedPlan = "Business";
+                    includedFeatures = "Advanced analytics, priority support, team management";
+                } else {
+                    recommendedPlan = "Enterprise";
+                    includedFeatures = "Dedicated manager, SLA guarantee, enterprise security";
+                }
+            }
+        }
+        System.out.println("Storage Capacity: " + storageGB + " GB");
+        System.out.println("User Count: " + userCount);
+        System.out.println("Backup Frequency: " + backupFrequency);
+        System.out.println("Support Tier: " + supportTier);
+        System.out.println("Base Storage Cost: $" + baseStorageCost);
+        System.out.println("Per-User Fee: $" + perUserFee);
+        System.out.println("Backup Premium: $" + backupPremium);
+        System.out.println("Support Fee: $" + supportFee);
+        System.out.println("Monthly Subscription: $" + monthlySubscription);
+        System.out.println("Annual Subscription: $" + annualSubscription + " (save " + annualDiscountPercent + "%)");
+        System.out.println("Recommended Plan: " + recommendedPlan);
+        System.out.println("Included Features: " + includedFeatures);
+
+    }
+}
