@@ -1,0 +1,60 @@
+
+import java.util.*;
+public class Loop4{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("number of sales:");
+        int n=sc.nextInt();
+        double totalsales = 0;
+        double totalcommission = 0;
+        double max = 0;
+        String top = " ";
+        for(int i=1;i<=n;i++){
+            sc.nextLine();
+            String repname = sc.nextLine();
+            double salesamount = sc.nextDouble();
+            int Commissionrate = 0;
+            if((salesamount >= 0)&&(salesamount <= 40000)){
+                Commissionrate = 5;
+            }else if((salesamount >= 40001)&&(salesamount <= 80000)){
+                Commissionrate = 8;
+            }else if((salesamount >= 80001)&&(salesamount <= 100000)){
+                Commissionrate = 10;
+            }else if((salesamount >= 100001)&&(salesamount <= 150000)){
+                Commissionrate = 12;
+            }else if((salesamount >= 150000)){
+                Commissionrate = 15;
+            }double commissionearned = 0;
+            commissionearned = salesamount *(Commissionrate/100.0);
+            double bonus = 0;
+            if(salesamount >= 100000){
+                bonus = 2000;
+            }else if(salesamount >= 150000){
+                bonus = 3000;
+            }double payout = 0;
+            payout = commissionearned + bonus;
+            totalsales = totalsales + salesamount;
+            totalcommission = totalcommission + commissionearned;
+            if(salesamount >  max){
+                max = salesamount;
+                top = repname;
+            } 
+            System.out.println("repname:"+repname);
+            System.out.println("sales amount:$"+salesamount);
+            System.out.println("commission rate:"+Commissionrate+"%");
+            System.out.println("commissionearned:$"+commissionearned);
+            System.out.println("bonus:$"+bonus);
+            System.out.println("total payout:$"+payout);
+
+
+        }  
+        System.out.println("total sales rep:"+n);
+        System.out.println("total sales:"+totalsales);
+        System.out.println("total commision:"+totalcommission);
+        System.out.println("top performer:"+ top);
+
+
+
+
+    }
+}
