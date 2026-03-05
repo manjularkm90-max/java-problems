@@ -1,0 +1,50 @@
+
+import java.util.*;
+public class Loop3{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("number of products:");
+        int n = sc.nextInt();
+        int lowcount =0;
+        int criticalcount =0;
+        double sum =0;
+        double reorder = 0;
+        for(int i=1;i<=n;i++){
+            sc.nextLine();
+            System.out.println("product name:");
+            String productname = sc.nextLine();
+            System.out.println("number of stocks:");
+            int currentstock = sc.nextInt();
+            System.out.println("minimum stock:");
+            int minimumstock = sc.nextInt();
+            String status = "";
+            if(currentstock >= minimumstock){
+                status = "Adequate";
+            }else if(currentstock < minimumstock/2){
+                status = "Low";
+            }else if(currentstock < minimumstock){
+                status = "Critical";
+            }
+            if(status.equalsIgnoreCase("Adequate")){
+                reorder = 0;
+            }else if(status.equalsIgnoreCase("Low")){
+                reorder = (minimumstock - currentstock) + minimumstock/0.5;
+                lowcount++;
+            }else if(status.equalsIgnoreCase("Critical")){
+                reorder = (minimumstock - currentstock) + minimumstock*1.5 ;
+                criticalcount++;
+            }
+            sum = sum + reorder;
+            
+            System.out.println("product:"+productname);
+            System.out.println("current stock:"+currentstock);
+            System.out.println("minimum stock:"+minimumstock);
+            System.out.println("statud:"+status);
+            System.out.println("reorder:"+(int)reorder);
+        }
+        System.out.println("totalproducts:"+n);
+        System.out.println("low count:"+lowcount);
+        System.out.println("criticalcount:"+criticalcount);
+        System.out.println("totalreorder:"+(int)sum);
+
+    }
