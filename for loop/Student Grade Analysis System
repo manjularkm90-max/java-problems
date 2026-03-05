@@ -1,0 +1,55 @@
+
+import java.util.*;
+public class Loop2{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("number of students:");
+        int n = sc.nextInt();
+        double average = 0;
+        int sum =0;
+        int count =0;
+        int mount =0;
+        int max = 0;
+        for(int i=1;i<=n;i++ ){
+            sc.nextLine();
+            System.out.println("student name:");
+            String Studentname = sc.nextLine();
+            System.out.println("enter the score:");
+            int score = sc.nextInt();
+            String grade = " ";
+            if((score >= 85)&&(score <= 100)){
+                grade = "A";
+            }else if((score >= 70)&&(score <= 84)){
+                grade = "B";
+            }else if((score >= 60)&&(score <= 69)){
+                grade = "C";
+            }else if((score >= 50)&&(score <= 59)){
+                grade = "D";
+            }else{
+                grade = "F";
+            }String status = " ";
+            if(score >= 60){
+                status = "PASS";
+                count++;
+
+            }else if(score <= 60){
+                status = "FAIL";
+                mount++;
+            }
+            if(score > max){
+                max = score;
+            }
+            sum = sum + score;
+            System.out.println("student name:"+Studentname);
+            System.out.println("score:"+score);
+            System.out.println("grade:"+grade);
+            System.out.println("status:"+status);
+        }
+        average = sum/n;
+        System.out.println("total students:"+ n);
+        System.out.println("average:"+average);
+        System.out.println("high:"+max);
+        System.out.println("passed:"+count);
+        System.out.println("failed:"+mount);
+    }
+}
