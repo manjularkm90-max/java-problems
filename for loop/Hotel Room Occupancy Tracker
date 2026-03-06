@@ -1,0 +1,52 @@
+
+import java.util.*;
+public class Loop5{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        double sum =0;
+        double average = 0;
+        double max = 0;
+        int peak = 0;
+        int count =0;
+        for(int i=1;i<=n;i++){
+            int day = sc.nextInt();
+            int roomoccupied = sc.nextInt();
+            int totalrooms = sc.nextInt();
+            double occupencyrate = 0;
+            occupencyrate = (roomoccupied / totalrooms) * 100;
+            String status = " ";
+            if(occupencyrate < 60){
+                status = "Low";
+            }else if((occupencyrate >=60)&&(occupencyrate <= 79)){
+                status = "Moderate";
+            }else if((occupencyrate >= 80)&&(occupencyrate <= 99)){
+                status = "High";
+            }else if(occupencyrate == 100){
+                status = "Full";
+                count++;
+            }
+            sum = sum+occupencyrate;
+            if(occupencyrate > max){
+                max = occupencyrate;
+                peak = day;
+            }
+
+
+            System.out.println("days:"+day);
+            System.out.println("rooms occupied:"+roomoccupied);
+            System.out.println("totalrooms:"+totalrooms);
+            System.out.println("occupency rate:"+occupencyrate+"%");
+            System.out.println("status:"+status);
+        }
+
+        average = sum/n;
+        System.out.println("total days analyzed:"+n);
+        System.out.printf("average occupency rate:%.2f%%\n",average );
+        System.out.println("peak occupency rate:Day"+" "+peak);
+        System.out.println("full capacity:"+count);
+
+
+
+    }
+}
