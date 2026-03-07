@@ -1,0 +1,48 @@
+
+import java.util.*;
+public class Loop6{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        double initialbalance = sc.nextDouble();
+        int n = sc.nextInt();
+        String status = " ";
+        double total =0;
+        int count = 0;
+        int mount =0;
+        String reason = " ";
+        double remaining = 0;
+        for(int i=1;i<=n;i++){
+            double withdrawalAmount = sc.nextDouble();
+            double current = 0;
+            current = initialbalance;
+            remaining = initialbalance - withdrawalAmount;
+            if(withdrawalAmount <= initialbalance){
+                status = "approved";
+                initialbalance = remaining;
+                count++;
+
+            }else if(withdrawalAmount >= remaining){
+                status = "Denied";
+                mount++;
+            }       
+            if(status.equalsIgnoreCase("approved")){
+                total = total+withdrawalAmount;
+            }
+            if(status.equalsIgnoreCase("Denied")){
+                reason = "Insufficient funds";
+            }else if(status.equalsIgnoreCase("approved")){
+                reason = "sufficient balance";
+            }
+            System.out.println("withdrawalamount$:"+withdrawalAmount);
+            System.out.println("status:"+status);
+            System.out.println("reason:"+reason);
+            System.out.println("remaining:$"+remaining);
+
+        }
+        System.out.println("total transactions:"+n);
+        System.out.println("sucessfull withdrawals:"+count);
+        System.out.println("failed:"+mount);
+        System.out.println("finalbalance:$"+remaining);
+        System.out.println("total balance:"+total);
+    }
+}
