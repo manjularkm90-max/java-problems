@@ -1,0 +1,53 @@
+
+import java.util.Scanner;
+
+public class Loop8 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int totalItems = 0;
+        double originalTotal = 0;
+        double totalDiscount = 0;
+        double finalTotal = 0;
+
+        for (int i = 0; i < n; i++) {
+            String productName = sc.next();
+            double price = sc.nextDouble();
+            int quantity = sc.nextInt();
+
+            int discountPercent;
+            if (price >= 500) {
+                discountPercent = 15;
+            } else if (price >= 20) {
+                discountPercent = 10;
+            } else {
+                discountPercent = 0;
+            }
+
+            double productTotal = price * quantity;
+            double discountAmount = productTotal * discountPercent / 100.0;
+            double subtotal = productTotal - discountAmount;
+
+            System.out.println("Product: " + productName);
+            System.out.println("Unit Price: $" + price);
+            System.out.println("Quantity: " + quantity);
+            System.out.println("Discount: " + discountPercent + "%");
+            System.out.println("Subtotal: $" + subtotal);
+            System.out.println();
+
+            totalItems += quantity;
+            originalTotal += productTotal;
+            totalDiscount += discountAmount;
+            finalTotal += subtotal;
+        }
+
+        double savingsPercent = (totalDiscount / originalTotal) * 100;
+        System.out.println("Total Items: " + totalItems);
+        System.out.println("Original Total: $" + originalTotal);
+        System.out.println("Total Discount: $" + totalDiscount);
+        System.out.println("Final Total: $" + finalTotal);
+        System.out.printf("Savings: %.2f%%\n", savingsPercent);
+    }
+}
