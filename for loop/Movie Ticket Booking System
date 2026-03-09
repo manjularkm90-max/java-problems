@@ -1,0 +1,54 @@
+
+import java.util.*;
+public class Loop11{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        double baseprice = 0;
+        int discount = 0;
+        double sum=0;
+        double total = 0;
+        double totaldiscount = 0;
+        for(int i=1;i<=n;i++){
+            sc.nextLine();
+            String seattype = sc.nextLine();
+            String customertype = sc.nextLine();
+            if(seattype.equalsIgnoreCase("regular")){
+                baseprice = 12;
+            }else if(seattype.equalsIgnoreCase("premium")){
+                baseprice = 18;
+            }else if(seattype.equalsIgnoreCase("recliner")){
+                baseprice = 25;
+            }
+            if(customertype.equalsIgnoreCase("adult")){
+                discount = 0;
+            }else if(customertype.equalsIgnoreCase("child")){
+                discount = 30;
+            }else if(customertype.equalsIgnoreCase("senior")){
+                discount = 25;
+            }
+            double finalprice = 0;
+            finalprice = baseprice * (1 - discount/100.0);
+            sum = sum+baseprice;
+            total = total + finalprice;
+
+
+            System.out.println("ticket:"+seattype +"-" +customertype);
+            System.out.println("base price:$"+baseprice);
+            System.out.println("discount:"+discount+"%");
+            System.out.println("finalprice:$"+finalprice);
+        }
+        totaldiscount = sum - total;
+        double group = 0;
+        System.out.println("total tickets:"+n);
+        System.out.println("original total:$"+sum);
+        System.out.println("final total:$"+total);
+        System.out.println("total discount:$"+(float)totaldiscount);
+          if(n >= 5){
+           group = total + (10/100);
+            System.out.println("group discount:"+(float)group);
+            System.out.println("yes");
+        }else{
+            System.out.println("group discount:no");
+        }
+    }
