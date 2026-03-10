@@ -1,0 +1,50 @@
+
+import java.util.Scanner;
+
+public class TaxiFareCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        double baseFare = 3.0;
+        double totalDistance = 0;
+        double totalRevenue = 0;
+
+        for (int i = 1; i <= n; i++) {
+            double distance = sc.nextDouble();
+            String timeOfDay = sc.next();
+
+            double distanceCharge = distance;
+            double surcharge = 0;
+
+            if (timeOfDay.equalsIgnoreCase("Evening")) {
+                surcharge = 3.0;
+            } else if (timeOfDay.equalsIgnoreCase("Night")) {
+                surcharge = 5.0;
+            }
+
+            double totalFare = baseFare + distanceCharge + surcharge;
+
+            totalDistance += distance;
+            totalRevenue += totalFare;
+
+            System.out.println("Ride " + i);
+            System.out.println("Distance: " + distance + " km");
+            System.out.println("Time: " + timeOfDay);
+            System.out.println("Base Fare: $" + baseFare);
+            System.out.println("Distance Charge: $" + distanceCharge);
+            System.out.println("Time Surcharge: $" + surcharge);
+            System.out.println("Total Fare: $" + totalFare);
+            System.out.println();
+        }
+
+        double averageFare = totalRevenue / n;
+
+        System.out.println("Total Rides: " + n);
+        System.out.println("Total Distance: " + totalDistance + " km");
+        System.out.println("Total Revenue: $" + totalRevenue);
+        System.out.println("Average Fare: $" + averageFare);
+
+    }
+}
