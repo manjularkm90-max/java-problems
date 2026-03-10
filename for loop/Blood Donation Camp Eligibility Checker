@@ -1,0 +1,45 @@
+
+import java.util.Scanner;
+public class BloodDonorEligibility {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int eligibleCount = 0;
+        int rejectedCount = 0;
+        for (int i = 0; i < n; i++) {
+            String name = sc.next();
+            int age = sc.nextInt();
+            double weight = sc.nextDouble();
+            double hemoglobin = sc.nextDouble();
+            System.out.println("Donor: " + name);
+            System.out.println("Age: " + age + " years");
+            System.out.println("Weight: " + weight + " kg");
+            System.out.println("Hemoglobin: " + hemoglobin + " g/dL");
+
+            if (age < 18) {
+                System.out.println("Status: Not Eligible");
+                System.out.println("Reason: Age below 18 years");
+                rejectedCount++;
+            } 
+            else if (weight < 50) {
+                System.out.println("Status: Not Eligible");
+                System.out.println("Reason: Weight below 50 kg");
+                rejectedCount++;
+            } 
+            else if (hemoglobin < 12.5) {
+                System.out.println("Status: Not Eligible");
+                System.out.println("Reason: Hemoglobin below 12.5 g/dL");
+                rejectedCount++;
+            } 
+            else {
+                System.out.println("Status: Eligible");
+                eligibleCount++;
+            }
+        }
+        double eligibilityRate = ((double) eligibleCount / n) * 100;
+        System.out.println("Total Donors: " + n);
+        System.out.println("Eligible Donors: " + eligibleCount);
+        System.out.println("Rejected Donors: " + rejectedCount);
+        System.out.printf("Eligibility Rate: %.2f%%", eligibilityRate);
+    }
+}
