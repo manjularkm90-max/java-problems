@@ -1,0 +1,49 @@
+
+import java.util.*;
+public class Loop16{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int count = 0;
+        int mount  =0;
+        double sum = 0;
+        double average = 0;
+        int max  =0;
+        int score = 0;
+        for(int i=1;i<=n;i++){
+            sc.nextLine();
+            String studentname = sc.nextLine();
+            int correctanswer = sc.nextInt();
+            int wronganswer = sc.nextInt();
+            int unattempted = sc.nextInt();
+            //int score = 0;
+            score = (correctanswer * 4) - (wronganswer * 3) + (unattempted * 0);
+            String result = " ";
+            if(score >= 32){
+                result = "pass";
+                count++;
+            }
+            else if(score <= 31){
+                result = "Fail";
+                mount++;
+            }
+            sum = sum+score;
+
+            System.out.println("student:"+studentname);
+            System.out.println("correct:"+correctanswer);
+            System.out.println("wrong:"+wronganswer);
+            System.out.println("unattempted:"+unattempted);
+            System.out.println("score:"+score);
+            System.out.println("result:"+result);
+        } System.out.println("---------------------------------------");
+        average = sum/n;
+        if(score > max);
+        max = score;
+        System.out.println("totalstudents:"+n);
+        System.out.println("pass count:"+count);
+        System.out.println("fail count:"+mount);
+        System.out.println("average:"+average);
+        System.out.println("highest score:"+max);
+
+    }
+}
