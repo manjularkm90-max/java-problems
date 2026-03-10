@@ -1,0 +1,58 @@
+
+import java.util.Scanner;
+
+public class ParkingSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        double totalRevenue = 0;
+        int peakVehicles = 0;
+        for (int i = 1; i <= n; i++) {
+            String type = sc.next();
+            double hours = sc.nextDouble();
+            double rate = 0;
+            double cap = 0;
+            if (type.equalsIgnoreCase("Car")) {
+                rate = 3.0;
+                cap = 30.0;
+            } 
+            else if (type.equalsIgnoreCase("Motorcycle")) {
+                rate = 2.0;
+                cap = 20.0;
+            } 
+            else if (type.equalsIgnoreCase("Truck")) {
+                rate = 5.0;
+                cap = 50.0;
+            } 
+            else if (type.equalsIgnoreCase("Bus")) {
+                rate = 6.0;
+                cap = 60.0;
+            }
+
+            double fee = hours * rate;
+            String capApplied = "No";
+            if (fee > cap) {
+                fee = cap;
+                capApplied = "Yes";
+            }
+
+            if (hours > 8) {
+                peakVehicles++;
+            }
+
+            totalRevenue += fee;
+            System.out.println("Vehicle " + i + ": " + type);
+            System.out.println("Hours Parked: " + hours);
+            System.out.println("Hourly Rate: $" + rate);
+            System.out.println("Parking Fee: $" + fee);
+            System.out.println("Cap Applied: " + capApplied);
+            System.out.println();
+        }
+
+        double average = totalRevenue / n;
+        System.out.println("Total Vehicles: " + n);
+        System.out.printf("Total Revenue: $%.1f\n", totalRevenue);
+        System.out.printf("Average Fee: $%.2f\n", average);
+        System.out.println("Peak Hour Vehicles (>8 hours): " + peakVehicles);
+    }
+}
