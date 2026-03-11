@@ -1,0 +1,35 @@
+
+
+
+import java.util.*;
+public class Nesf4{
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int students = sc.nextInt();
+        int subjects = sc.nextInt();
+
+        System.out.println("Grade Sheet:");
+        System.out.print("Student ");
+        for(int i = 1; i <= subjects; i++){
+            System.out.print("Sub" + i + " ");
+        }
+        System.out.println("Average");
+        for(int i = 0; i < students; i++){
+            String name = sc.next();
+            System.out.print(name + " ");
+
+            double sum = 0;
+
+            for(int j = 0; j < subjects; j++){
+                int score = sc.nextInt();
+                System.out.print(score + " ");
+                sum += score;
+            }
+
+            double avg = sum / subjects;
+            System.out.printf("%.2f\n", avg);
+        }
+    }
+}
