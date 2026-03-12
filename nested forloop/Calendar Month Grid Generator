@@ -1,0 +1,30 @@
+
+
+import java.util.Scanner;
+
+public class Nesf5 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int daysInMonth = sc.nextInt();
+        int startDay = sc.nextInt();
+        System.out.println("Calendar Grid:");
+        System.out.println("Mon Tue Wed Thu Fri Sat Sun");
+        int date = 1;
+        for (int week = 1; week <= 6; week++) {
+            for (int day = 1; day <= 7; day++) {
+                if (week == 1 && day < startDay) {
+                    System.out.print("    ");
+                } 
+                else if (date <= daysInMonth) {
+                    System.out.print(date + " ");
+                    date++;
+                }
+            }
+            System.out.println();
+
+            if (date > daysInMonth) {
+                break;
+            }
+        }
+    }
+}
