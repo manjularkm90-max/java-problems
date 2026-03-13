@@ -1,0 +1,40 @@
+
+import java.util.Scanner;
+
+public class esf10 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int products = sc.nextInt();
+        int vendors = sc.nextInt();
+
+        String[] productNames = new String[products];
+        double[][] prices = new double[products][vendors];
+        for (int i = 0; i < products; i++) {
+            productNames[i] = sc.next();
+            for (int j = 0; j < vendors; j++) {
+                prices[i][j] = sc.nextDouble();
+            }
+        }
+        System.out.println("Price Comparison Matrix:");
+        System.out.print("Product ");
+        for (int j = 1; j <= vendors; j++) {
+            System.out.print("Vendor" + j + " ");
+        }
+        System.out.println("BestPrice");
+        for (int i = 0; i < products; i++) {
+            System.out.print(productNames[i] + " ");
+
+            double bestPrice = prices[i][0];
+
+            for (int j = 0; j < vendors; j++) {
+                System.out.print(prices[i][j] + " ");
+                if (prices[i][j] < bestPrice) {
+                    bestPrice = prices[i][j];
+                }
+            }
+
+            System.out.println(bestPrice);
+        }
+    }
+}
