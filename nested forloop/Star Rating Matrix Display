@@ -1,0 +1,46 @@
+
+import java.util.Scanner;
+
+public class Nesf15 {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int products = sc.nextInt();
+        sc.nextLine(); 
+
+        String[] names = new String[products];
+        double[] ratings = new double[products];
+
+        double total = 0;
+
+        for(int i = 0; i < products; i++){
+            names[i] = sc.next();
+            ratings[i] = sc.nextDouble();
+            total += ratings[i];
+        }
+
+        System.out.println("Star Rating Matrix:");
+        System.out.println("Product Rating Stars");
+
+        for(int i = 0; i < products; i++){
+
+            System.out.print(names[i] + " " + ratings[i] + " ");
+
+            int fullStars = (int)ratings[i];
+
+            for(int j = 0; j < 5; j++){
+                if(j < fullStars)
+                    System.out.print("★");
+                else
+                    System.out.print("☆");
+            }
+
+            System.out.println();
+        }
+
+        double avg = total / products;
+
+        System.out.printf("\nAverage Rating: %.2f", avg);
+    }
+}
