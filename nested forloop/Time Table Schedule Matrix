@@ -1,0 +1,37 @@
+
+import java.util.Scanner;
+
+public class ClassTimeTable {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int days = sc.nextInt();
+        int periods = sc.nextInt();
+        sc.nextLine(); 
+
+        String[][] timetable = new String[days][periods];
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                timetable[i][j] = sc.next();
+            }
+        }
+
+        String[] dayNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+        System.out.println("Class Time Table:");
+        System.out.print("Day ");
+        for (int j = 1; j <= periods; j++) {
+            System.out.print("Period" + j + " ");
+        }
+        System.out.println();
+        for (int i = 0; i < days; i++) {
+            System.out.print(dayNames[i] + " ");
+            for (int j = 0; j < periods; j++) {
+                System.out.print(timetable[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+    }
+}
