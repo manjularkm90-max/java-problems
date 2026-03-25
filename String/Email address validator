@@ -1,0 +1,61 @@
+// Email Address Validator
+import java.util.Scanner;
+
+public class EmailValidator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        int validCount = 0;
+        int invalidCount = 0;
+
+        System.out.println("Email Validation Results:");
+
+        for (int i = 1; i <= n; i++) {
+            String email = sc.nextLine();
+            boolean isValid = true;
+            if (email.startsWith("@") || email.startsWith(".") ||
+                email.endsWith("@") || email.endsWith(".")) {
+                isValid = false;
+            }
+            int atCount = 0;
+            int atIndex = -1;
+
+            for (int j = 0; j < email.length(); j++) {
+                if (email.charAt(j) == '@') {
+                    atCount++;
+                    atIndex = j;
+                }
+            }
+
+            if (atCount != 1) {
+                isValid = false;
+            }
+            boolean dotAfterAt = false;
+            if (atIndex != -1) {
+                for (int j = atIndex + 1; j < email.length(); j++) {
+                    if (email.charAt(j) == '.') {
+                        dotAfterAt = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!dotAfterAt) {
+                isValid = false;
+            }
+            if (isValid) {
+                System.out.println(i + ". " + email + " - Valid");
+                validCount++;
+            } else {
+                System.out.println(i + ". " + email + " - Invalid");
+                invalidCount++;
+            }
+        }
+
+        System.out.println("Total Valid: " + validCount);
+        System.out.println("Total Invalid: " + invalidCount);
+    }
+}
