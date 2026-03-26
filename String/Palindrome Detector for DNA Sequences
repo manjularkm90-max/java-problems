@@ -1,0 +1,38 @@
+
+import java.util.*;
+
+public class DNAPalindrome {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("DNA Sequence Analysis:");
+
+        for (int i = 1; i <= n; i++) {
+            String sequence = sc.nextLine();
+            String str = sequence.toLowerCase();
+
+            boolean isPalindrome = true;
+            int left = 0, right = str.length() - 1;
+
+            while (left < right) {
+                if (str.charAt(left) != str.charAt(right)) {
+                    isPalindrome = false;
+                    break;
+                }
+                left++;
+                right--;
+            }
+
+            if (isPalindrome) {
+                System.out.println(i + ". " + sequence + " - Palindrome");
+            } else {
+                System.out.println(i + ". " + sequence + " - Not Palindrome");
+            }
+        }
+
+        sc.close();
+    }
+}
