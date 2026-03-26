@@ -1,0 +1,31 @@
+
+import java.util.*;
+
+public class RLECompression {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+
+        StringBuilder compressed = new StringBuilder();
+
+        int count = 1;
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) == input.charAt(i - 1)) {
+                count++;
+            } else {
+                compressed.append(input.charAt(i - 1)).append(count);
+                count = 1;
+            }
+        }
+        compressed.append(input.charAt(input.length() - 1)).append(count);
+
+        String comp = compressed.toString();
+        double ratio = ((double)(input.length() - comp.length()) / input.length()) * 100;
+
+        System.out.println("Original: " + input);
+        System.out.println("Compressed: " + comp);
+        System.out.printf("Compression Ratio: %.2f%%\n", ratio);
+
+        sc.close();
+    }
+}
