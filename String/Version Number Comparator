@@ -1,0 +1,45 @@
+
+import java.util.*;
+
+public class VersionCompare {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Version Comparison:");
+
+        for (int i = 1; i <= n; i++) {
+            String[] input = sc.nextLine().split(" ");
+            String v1 = input[0];
+            String v2 = input[1];
+
+            String[] arr1 = v1.split("\\.");
+            String[] arr2 = v2.split("\\.");
+
+            int maxLength = Math.max(arr1.length, arr2.length);
+            int result = 0;
+
+            for (int j = 0; j < maxLength; j++) {
+                int num1 = (j < arr1.length) ? Integer.parseInt(arr1[j]) : 0;
+                int num2 = (j < arr2.length) ? Integer.parseInt(arr2[j]) : 0;
+
+                if (num1 > num2) {
+                    result = 1;
+                    break;
+                } else if (num1 < num2) {
+                    result = -1;
+                    break;
+                }
+            }
+
+            if (result == 1) {
+                System.out.println(i + ". " + v1 + " vs " + v2 + " -> v1 is Newer");
+            } else if (result == -1) {
+                System.out.println(i + ". " + v1 + " vs " + v2 + " -> v2 is Newer");
+            } else {
+                System.out.println(i + ". " + v1 + " vs " + v2 + " -> Equal");
+            }
+        }
+    }
+}
