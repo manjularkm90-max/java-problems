@@ -1,0 +1,29 @@
+
+import java.util.*;
+
+public class WordFrequency {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String text = sc.nextLine();
+
+        text = text.toLowerCase();
+        text = text.replaceAll("[^a-z0-9 ]", " ");
+
+        String[] words = text.trim().split("\\s+");
+
+        Map<String, Integer> map = new TreeMap<>();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                map.put(word, map.getOrDefault(word, 0) + 1);
+            }
+        }
+
+        System.out.println("Word Frequency Report:");
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        System.out.println("Total Unique Words: " + map.size());
+    }
+}
