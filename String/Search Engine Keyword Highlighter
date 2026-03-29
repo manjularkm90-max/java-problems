@@ -1,0 +1,23 @@
+
+import java.util.*;
+
+public class KeywordHighlighter {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String keyword = sc.nextLine();
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        System.out.println("Highlighted Text:");
+
+        for (int i = 1; i <= n; i++) {
+            String sentence = sc.nextLine();
+            String result = sentence.replaceAll("(?i)" + keyword, "<b>$0</b>");
+
+            System.out.println(i + ". " + result);
+        }
+
+        sc.close();
+    }
+}
