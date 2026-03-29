@@ -1,0 +1,25 @@
+
+import java.util.*;
+public class TextPreprocessor {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Cleaned Text:");
+
+        for (int i = 1; i <= n; i++) {
+            String text = sc.nextLine();
+
+            String cleaned = text.toLowerCase()
+                                 .replaceAll("[^a-z0-9 ]", "")
+                                 .replaceAll("\\s+", " ")
+                                 .trim();
+
+            System.out.println(i + ". " + cleaned);
+        }
+
+        sc.close();
+    }
+}
