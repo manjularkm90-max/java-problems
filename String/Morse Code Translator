@@ -1,0 +1,39 @@
+
+import java.util.*;
+
+public class MorseCodeTranslator {
+    static Map<String, String> morseMap = new HashMap<>();
+
+    static {
+        String[] letters = {
+            ".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
+            "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-",
+            "..-","...-",".--","-..-","-.--","--.."
+        };
+
+        for (int i = 0; i < 26; i++) {
+            morseMap.put(letters[i], String.valueOf((char)('A' + i)));
+        }
+    }
+
+    public static String translate(String morse) {
+        StringBuilder result = new StringBuilder();
+        String[] words = morse.split(" / ");
+
+        for (int i = 0; i < words.length; i++) {
+            String[] chars = words[i].split(" ");
+            for (String c : chars) {
+                result.append(morseMap.getOrDefault(c, ""));
+            }
+            if (i < words.length - 1) result.append(" ");
+        }
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+
+        System.out.println("English Translation: " + translate(input));
+    }
+}
