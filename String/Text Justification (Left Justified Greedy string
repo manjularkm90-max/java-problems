@@ -1,0 +1,39 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int maxWidth = sc.nextInt();
+        sc.nextLine();
+        String text = sc.nextLine();
+
+        String[] words = text.split(" ");
+        StringBuilder line = new StringBuilder();
+
+        System.out.println("Formatted Text:");
+
+        for (String word : words) {
+            if (line.length() == 0) {
+                line.append(word);
+            } else if (line.length() + 1 + word.length() <= maxWidth) {
+                line.append(" ").append(word);
+            } else {
+                System.out.println(padRight(line.toString(), maxWidth));
+                line = new StringBuilder(word);
+            }
+        }
+        if (line.length() > 0) {
+            System.out.println(padRight(line.toString(), maxWidth));
+        }
+    }
+
+    public static String padRight(String s, int width) {
+        StringBuilder sb = new StringBuilder(s);
+        while (sb.length() < width) {
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+}
