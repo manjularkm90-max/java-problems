@@ -1,0 +1,36 @@
+
+import java.util.*;
+
+public class Main {
+    public static boolean isValidIP(String ip) {
+        String[] parts = ip.split("\\.");
+
+        if (parts.length != 4) return false;
+
+        for (String part : parts) {
+            if (part.length() == 0) return false;
+            if (part.length() > 1 && part.startsWith("0")) return false;
+
+            try {
+                int num = Integer.parseInt(part);
+                if (num < 0 || num > 255) return false;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("IP Validation:");
+        for (int i = 1; i <= n; i++) {
+            String ip = sc.nextLine();
+            System.out.println(i + ". " + ip + " -> " + 
+                (isValidIP(ip) ? "Valid" : "Invalid"));
+        }
+    }
+}
