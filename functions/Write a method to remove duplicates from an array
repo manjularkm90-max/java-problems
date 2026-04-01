@@ -1,0 +1,16 @@
+int[] removeDuplicates(int[] arr) {
+    java.util.Set<Integer> set = new java.util.HashSet<>();
+
+    for (int num : arr) {
+        set.add(num);
+    }
+
+    int[] result = new int[set.size()];
+    int i = 0;
+
+    for (int num : set) {
+        result[i++] = num;
+    }
+
+    return result;
+}
