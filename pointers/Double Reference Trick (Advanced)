@@ -1,0 +1,12 @@
+class Wrapper {
+    int value;
+}
+
+static void modify(Wrapper w) {
+    w.value = 200;
+}
+
+public static void main(String[] args) {
+    Wrapper w = new Wrapper();
+    modify(w);
+}
