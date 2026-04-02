@@ -1,0 +1,10 @@
+static void change(Test t) {
+    t.value = 100;
+}
+
+public static void main(String[] args) {
+    Test obj = new Test(50);
+    change(obj);
+
+    System.out.println(obj.value); // 100
+}
