@@ -1,0 +1,21 @@
+class Test {
+    int value;
+    Test(int v) { value = v; }
+}
+
+public class Main {
+    static void swap(Test t1, Test t2) {
+        Test temp = t1;
+        t1 = t2;
+        t2 = temp;
+    }
+
+    public static void main(String[] args) {
+        Test a = new Test(5);
+        Test b = new Test(10);
+
+        swap(a, b);
+
+        System.out.println(a.value + " " + b.value); // 5 10 (NOT swapped)
+    }
+}
