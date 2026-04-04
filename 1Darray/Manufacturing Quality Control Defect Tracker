@@ -1,0 +1,33 @@
+
+import java.util.*;
+
+public class DefectTracker {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int maxDefects = sc.nextInt();
+
+        int[] defects = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            defects[i] = sc.nextInt();
+        }
+
+        List<Integer> criticalLines = new ArrayList<>();
+\
+        for (int i = 0; i < n; i++) {
+            if (defects[i] > maxDefects) {
+                criticalLines.add(i + 1); 
+            }
+        }
+
+        int count = criticalLines.size();
+        double complianceRate = ((double)(n - count) / n) * 100;
+        System.out.println("Production Lines: " + n);
+        System.out.println("Acceptable Threshold: " + maxDefects);
+        System.out.println("Lines Exceeding Threshold: " + count);
+        System.out.println("Critical Lines: " + criticalLines);
+        System.out.printf("Compliance Rate: %.2f%%\n", complianceRate);
+
+        sc.close();
