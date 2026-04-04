@@ -1,0 +1,40 @@
+
+import java.util.*;
+
+public class FraudDetection {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] transactions = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            transactions[i] = sc.nextDouble();
+        }
+
+        double sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += transactions[i];
+        }
+
+        double average = sum / n;
+        double threshold = 2 * average;
+
+        List<Integer> suspiciousIndices = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            if (transactions[i] > threshold) {
+                suspiciousIndices.add(i);
+            }
+        }
+
+      
+        System.out.println("Total Transactions: " + n);
+        System.out.printf("Average Transaction: $%.2f\n", average);
+        System.out.println("Suspicious Transactions: " + suspiciousIndices.size());
+        System.out.println("Fraud Alert Indices: " + suspiciousIndices);
+
+        sc.close();
+    }
+}
