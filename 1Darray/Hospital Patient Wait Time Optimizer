@@ -1,0 +1,52 @@
+
+//E-commerce Product Price Comparison Engine
+import java.util.*;
+
+public class PatientWaitTimeOptimizer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+    
+        int n = sc.nextInt();
+        int[] waitTimes = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            waitTimes[i] = sc.nextInt();
+        }
+
+   
+        int max = waitTimes[0];
+        int sum = 0;
+        int countAbove60 = 0;
+
+        for (int i = 0; i < n; i++) {
+            int time = waitTimes[i];
+
+            if (time > max) {
+                max = time;
+            }
+
+            
+            sum += time;
+
+            if (time > 60) {
+                countAbove60++;
+            }
+        }
+
+        
+        double average = (double) sum / n;
+
+        
+        double serviceLevel = ((double)(n - countAbove60) / n) * 100;
+
+        
+        System.out.println("Total Patients: " + n);
+        System.out.println("Longest Wait Time: " + max + " minutes");
+        System.out.printf("Average Wait Time: %.2f minutes\n", average);
+        System.out.println("Patients Waiting >60 min: " + countAbove60);
+        System.out.printf("Service Level: %.2f%%\n", serviceLevel);
+
+        sc.close();
+    }
+}
