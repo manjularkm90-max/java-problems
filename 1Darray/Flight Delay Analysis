@@ -1,0 +1,40 @@
+//Flight Delay Analysis
+import java.util.*;
+
+public class Q13_FlightDelay {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] delay = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            delay[i] = sc.nextInt();
+        }
+
+        int max = delay[0];
+        int onTime = 0, compensation = 0;
+        double sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += delay[i];
+
+            if (delay[i] > max) max = delay[i];
+
+            if (delay[i] <= 15) onTime++;
+            if (delay[i] > 180) compensation++;
+        }
+
+        double avg = sum / n;
+        double performance = (onTime * 100.0) / n;
+
+        System.out.println("Total Flights: " + n);
+        System.out.printf("Average Delay: %.2f minutes\n", avg);
+        System.out.println("Maximum Delay: " + max + " minutes");
+        System.out.println("On-Time Flights: " + onTime);
+        System.out.println("Compensation Required: " + compensation);
+        System.out.printf("On-Time Performance: %.2f%%\n", performance);
+
+        sc.close();
+    }
+}
