@@ -1,0 +1,41 @@
+
+import java.util.*;
+
+public class Q11_CryptoPortfolio {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] qty = new double[n];
+        double[] price = new double[n];
+
+        for (int i = 0; i < n; i++) qty[i] = sc.nextDouble();
+        for (int i = 0; i < n; i++) price[i] = sc.nextDouble();
+
+        double total = 0;
+        double maxVal = 0, minVal = Double.MAX_VALUE;
+        int maxIndex = 0, minIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            double value = qty[i] * price[i];
+            total += value;
+
+            if (value > maxVal) {
+                maxVal = value;
+                maxIndex = i;
+            }
+
+            if (value < minVal) {
+                minVal = value;
+                minIndex = i;
+            }
+        }
+
+        System.out.println("Number of Assets: " + n);
+        System.out.printf("Total Portfolio Value: $%.2f\n", total);
+        System.out.printf("Most Valuable Asset: Asset %d ($%.2f)\n", maxIndex + 1, maxVal);
+        System.out.printf("Least Valuable Asset: Asset %d ($%.2f)\n", minIndex + 1, minVal);
+
+        sc.close();
+    }
+}
