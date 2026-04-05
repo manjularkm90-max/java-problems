@@ -1,0 +1,46 @@
+
+import java.util.*;
+
+public class Q12_EnergyAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] energy = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            energy[i] = sc.nextDouble();
+        }
+
+        double limit = sc.nextDouble();
+
+        double total = 0;
+        double max = energy[0];
+        int peakIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            total += energy[i];
+
+            if (energy[i] > max) {
+                max = energy[i];
+                peakIndex = i;
+            }
+        }
+
+        double avg = total / n;
+
+        System.out.println("Hours Monitored: " + n);
+        System.out.printf("Total Daily Consumption: %.2f kWh\n", total);
+        System.out.printf("Peak Hour: Hour %d (%.2f kWh)\n", peakIndex + 1, max);
+        System.out.printf("Average Hourly: %.2f kWh\n", avg);
+        System.out.printf("Daily Limit: %.2f kWh\n", limit);
+
+        if (total <= limit) {
+            System.out.println("Status: Within Limit");
+        } else {
+            System.out.printf("Status: Exceeded by %.2f kWh\n", (total - limit));
+        }
+
+        sc.close();
+    }
+}
