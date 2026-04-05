@@ -1,0 +1,43 @@
+
+import java.util.*;
+
+public class Q9_RetailSales {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] sales = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            sales[i] = sc.nextDouble();
+        }
+
+        double total = 0;
+        double max = sales[0], min = sales[0];
+        int maxIndex = 0, minIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            total += sales[i];
+
+            if (sales[i] > max) {
+                max = sales[i];
+                maxIndex = i;
+            }
+
+            if (sales[i] < min) {
+                min = sales[i];
+                minIndex = i;
+            }
+        }
+
+        double avg = total / n;
+
+        System.out.println("Total Stores: " + n);
+        System.out.printf("Highest Sales: $%.2f (Store %d)\n", max, maxIndex + 1);
+        System.out.printf("Lowest Sales: $%.2f (Store %d)\n", min, minIndex + 1);
+        System.out.printf("Total Sales: $%.2f\n", total);
+        System.out.printf("Average Sales: $%.2f\n", avg);
+
+        sc.close();
+    }
+}
