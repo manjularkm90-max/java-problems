@@ -1,0 +1,47 @@
+
+import java.util.*;
+
+public class TradingVolumeAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        long[] volumes = new long[n];
+
+        for (int i = 0; i < n; i++) {
+            volumes[i] = sc.nextLong();
+        }
+
+        long total = 0, max = volumes[0];
+        int maxIndex = 0;
+
+        
+        for (int i = 0; i < n; i++) {
+            total += volumes[i];
+            if (volumes[i] > max) {
+                max = volumes[i];
+                maxIndex = i;
+            }
+        }
+
+        long avg = total / n;
+        double threshold = avg * 1.5;
+
+        int count = 0;
+        List<Integer> breakoutDays = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            if (volumes[i] > threshold) {
+                count++;
+                breakoutDays.add(i + 1);
+            }
+        }
+
+        System.out.println("Trading Days Analyzed: " + n);
+        System.out.println("Total Volume: " + total);
+        System.out.println("Average Daily Volume: " + avg);
+        System.out.println("Peak Volume Day: Day " + (maxIndex + 1) + " (" + max + ")");
+        System.out.println("High Volume Days (>150% avg): " + count);
+        System.out.println("Breakout Signal Days: " + breakoutDays);
+    }
+}
