@@ -1,0 +1,42 @@
+
+import java.util.*;
+
+public class WaterQualityAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] ph = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            ph[i] = sc.nextDouble();
+        }
+
+        double sum = 0, min = ph[0], max = ph[0];
+        int unsafe = 0;
+        List<Integer> alerts = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            sum += ph[i];
+
+            if (ph[i] < min) min = ph[i];
+            if (ph[i] > max) max = ph[i];
+
+            if (ph[i] < 6.5 || ph[i] > 8.5) {
+                unsafe++;
+                alerts.add(i + 1);
+            }
+        }
+
+        double avg = sum / n;
+        double compliance = ((double)(n - unsafe) / n) * 100;
+
+        System.out.println("Total Samples: " + n);
+        System.out.printf("Average pH: %.2f\n", avg);
+        System.out.printf("Minimum pH: %.2f\n", min);
+        System.out.printf("Maximum pH: %.2f\n", max);
+        System.out.println("Unsafe Samples: " + unsafe);
+        System.out.printf("Safety Compliance: %.2f%%\n", compliance);
+        System.out.println("Critical Alerts: " + alerts);
+    }
+}
