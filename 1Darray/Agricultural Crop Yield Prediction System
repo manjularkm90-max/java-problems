@@ -1,0 +1,45 @@
+
+import java.util.*;
+
+public class CropYieldAnalysis {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] yields = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            yields[i] = sc.nextDouble();
+        }
+
+        double total = 0, max = yields[0];
+        int maxIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            total += yields[i];
+            if (yields[i] > max) {
+                max = yields[i];
+                maxIndex = i;
+            }
+        }
+
+        double avg = total / n;
+        double threshold = avg * 0.8;
+
+        int underperforming = 0;
+
+     
+        for (int i = 0; i < n; i++) {
+            if (yields[i] < threshold) {
+                underperforming++;
+            }
+        }
+
+        System.out.println("Total Plots: " + n);
+        System.out.printf("Total Harvest: %.2f tons\n", total);
+        System.out.printf("Average Yield: %.2f tons/acre\n", avg);
+        System.out.printf("Highest Yield: %.2f tons/acre (Plot %d)\n", max, maxIndex + 1);
+        System.out.println("Underperforming Plots: " + underperforming);
+        System.out.printf("Performance Threshold: %.2f tons/acre\n", threshold);
+    }
+}
