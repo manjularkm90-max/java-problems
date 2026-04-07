@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class InventoryTurnover {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        int total = 0;
+        int max = Integer.MIN_VALUE;
+        int maxIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+            total += arr[i];
+
+            if (arr[i] > max) {
+                max = arr[i];
+                maxIndex = i + 1;
+            }
+        }
+
+        double avg = (double) total / n;
+        double threshold = avg * 0.5;
+
+        List<Integer> slow = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] < threshold) {
+                slow.add(i + 1);
+            }
+        }
+
+        System.out.println("Total Products: " + n);
+        System.out.println("Total Units Sold: " + total);
+        System.out.printf("Average Monthly Sales: %.2f\n", avg);
+        System.out.println("Best Seller: Product " + maxIndex + " (" + max + " units)");
+        System.out.println("Slow-Moving Products: " + slow.size());
+        System.out.printf("Turnover Threshold: %.2f units\n", threshold);
+        System.out.println("Clearance Candidates: " + slow);
+    }
+}
