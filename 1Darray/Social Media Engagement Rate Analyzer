@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class EngagementAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] rates = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            rates[i] = sc.nextDouble();
+        }
+
+        double total = 0;
+        double max = rates[0], min = rates[0];
+        int maxIndex = 0, minIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            total += rates[i];
+
+            if (rates[i] > max) {
+                max = rates[i];
+                maxIndex = i;
+            }
+
+            if (rates[i] < min) {
+                min = rates[i];
+                minIndex = i;
+            }
+        }
+
+        double avg = total / n;
+        double threshold = avg * 2;
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            if (rates[i] > threshold) {
+                list.add(i + 1);
+            }
+        }
+
+        System.out.println("Total Posts: " + n);
+        System.out.printf("Average Engagement: %.2f%%\n", avg);
+        System.out.printf("Peak Engagement: %.2f%% (Post %d)\n", max, maxIndex + 1);
+        System.out.printf("Lowest Engagement: %.2f%% (Post %d)\n", min, minIndex + 1);
+        System.out.println("Viral Posts (>200% avg): " + list.size());
+        System.out.printf("Viral Threshold: %.2f%%\n", threshold);
+        System.out.println("Top Performers: " + list);
+    }
+}
