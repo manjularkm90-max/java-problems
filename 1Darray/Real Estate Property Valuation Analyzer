@@ -1,0 +1,57 @@
+import java.util.*;
+
+public class PropertyAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] values = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            values[i] = sc.nextDouble();
+        }
+
+        double total = 0;
+        double max = values[0], min = values[0];
+        int maxIndex = 0, minIndex = 0;
+
+       
+        for (int i = 0; i < n; i++) {
+            total += values[i];
+
+            if (values[i] > max) {
+                max = values[i];
+                maxIndex = i;
+            }
+
+            if (values[i] < min) {
+                min = values[i];
+                minIndex = i;
+            }
+        }
+
+        double avg = total / n;
+        double bargainThreshold = avg * 0.7;
+        double premiumThreshold = avg * 1.5;
+
+        int bargainCount = 0, premiumCount = 0;
+
+      
+        for (int i = 0; i < n; i++) {
+            if (values[i] < bargainThreshold) {
+                bargainCount++;
+            }
+            if (values[i] > premiumThreshold) {
+                premiumCount++;
+            }
+        }
+
+        System.out.println("Total Properties: " + n);
+        System.out.printf("Portfolio Value: $%.2f\n", total);
+        System.out.printf("Average Property Value: $%.2f\n", avg);
+        System.out.printf("Most Valuable: $%.2f (Property %d)\n", max, maxIndex + 1);
+        System.out.printf("Least Valuable: $%.2f (Property %d)\n", min, minIndex + 1);
+        System.out.println("Bargain Properties (<70% avg): " + bargainCount);
+        System.out.println("Premium Properties (>150% avg): " + premiumCount);
+    }
+}
