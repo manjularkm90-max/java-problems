@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class TemperatureAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int r = sc.nextInt();
+        int c = sc.nextInt();
+
+        int[][] temp = new int[r][c];
+
+        int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+        int maxR = 0, maxC = 0, minR = 0, minC = 0;
+        int sum = 0;
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                temp[i][j] = sc.nextInt();
+                sum += temp[i][j];
+
+                if (temp[i][j] > max) {
+                    max = temp[i][j];
+                    maxR = i; maxC = j;
+                }
+
+                if (temp[i][j] < min) {
+                    min = temp[i][j];
+                    minR = i; minC = j;
+                }
+            }
+        }
+
+        System.out.println("Temperature Grid:");
+        for (int[] row : temp) {
+            for (int val : row)
+                System.out.print(val + " ");
+            System.out.println();
+        }
+
+        double avg = (double) sum / (r * c);
+
+        System.out.println("\nMaximum Temperature: " + max + "°C at position (" + maxR + ", " + maxC + ")");
+        System.out.println("Minimum Temperature: " + min + "°C at position (" + minR + ", " + minC + ")");
+        System.out.printf("Average Temperature: %.2f°C\n", avg * 100);
+    }
+}
