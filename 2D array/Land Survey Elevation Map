@@ -1,0 +1,38 @@
+import java.util.*;
+
+public class ElevationMap {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int rows = sc.nextInt();
+        int cols = sc.nextInt();
+
+        double[][] map = new double[rows][cols];
+
+        double max = Double.MIN_VALUE;
+        double min = Double.MAX_VALUE;
+
+      
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                map[i][j] = sc.nextDouble();
+
+                if (map[i][j] > max) max = map[i][j];
+                if (map[i][j] < min) min = map[i][j];
+            }
+        }
+
+     
+        System.out.println("Elevation Map:");
+        for (double[] row : map) {
+            for (double val : row) {
+                System.out.print(val + " ");
+            }
+        }
+        System.out.println();
+
+        System.out.println("Highest Point: " + max + " m");
+        System.out.println("Lowest Point: " + min + " m");
+        System.out.println("Elevation Range: " + (max - min) + " m");
+    }
+}
