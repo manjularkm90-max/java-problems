@@ -1,0 +1,53 @@
+import java.util.*;
+
+public class TrafficFlow {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int lanes = sc.nextInt();
+        int hours = sc.nextInt();
+
+        int[][] traffic = new int[lanes][hours];
+
+        // Input
+        for (int i = 0; i < lanes; i++) {
+            for (int j = 0; j < hours; j++) {
+                traffic[i][j] = sc.nextInt();
+            }
+        }
+
+        // Display
+        System.out.println("Traffic Data:");
+        for (int[] row : traffic) {
+            for (int val : row) {
+                System.out.print(val + " ");
+            }
+        }
+        System.out.println();
+
+        // Lane totals
+        System.out.println("Total Traffic Per Lane:");
+        for (int i = 0; i < lanes; i++) {
+            int sum = 0;
+            for (int j = 0; j < hours; j++) {
+                sum += traffic[i][j];
+            }
+            System.out.println("Lane " + (i + 1) + ": " + sum);
+        }
+
+        // Busiest hour
+        int maxHour = 0, maxTraffic = 0;
+        for (int j = 0; j < hours; j++) {
+            int sum = 0;
+            for (int i = 0; i < lanes; i++) {
+                sum += traffic[i][j];
+            }
+            if (sum > maxTraffic) {
+                maxTraffic = sum;
+                maxHour = j;
+            }
+        }
+
+        System.out.println("Busiest Hour: Hour " + (maxHour + 1) + " with " + maxTraffic + " vehicles");
+    }
+}
