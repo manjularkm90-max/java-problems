@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class RainfallAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double[][] rain = new double[4][7];
+
+        for (int i = 0; i < 4; i++)
+            for (int j = 0; j < 7; j++)
+                rain[i][j] = sc.nextDouble();
+
+        System.out.println("Rainfall Data:");
+        for (double[] row : rain) {
+            for (double val : row) System.out.print((int)val + " ");
+            System.out.println();
+        }
+
+        double total = 0;
+        double min = Double.MAX_VALUE;
+        int driestWeek = 0;
+
+        System.out.println("\nWeekly Totals:");
+
+        for (int i = 0; i < 4; i++) {
+            double weekSum = 0;
+            for (int j = 0; j < 7; j++) {
+                weekSum += rain[i][j];
+            }
+            total += weekSum;
+
+            if (weekSum < min) {
+                min = weekSum;
+                driestWeek = i + 1;
+            }
+
+            System.out.println("Week " + (i + 1) + ": " + (int)weekSum + " mm");
+        }
+
+        System.out.println("\nMonthly Total: " + (int)total + " mm");
+        System.out.println("Driest Week: Week " + driestWeek + " (" + (int)min + " mm)");
+    }
+}
