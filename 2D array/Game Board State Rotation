@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class MatrixRotation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[][] mat = new int[n][n];
+        int[][] rotated = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                mat[i][j] = sc.nextInt();
+
+        System.out.println("Original Matrix:");
+        for (int[] row : mat) {
+            for (int val : row) System.out.print(val + " ");
+            System.out.println();
+        }
+
+        // Rotation
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                rotated[j][n - 1 - i] = mat[i][j];
+
+        System.out.println("\nRotated Matrix (90 deg clockwise):");
+        for (int[] row : rotated) {
+            for (int val : row) System.out.print(val + " ");
+            System.out.println();
+        }
+    }
+}
