@@ -1,0 +1,36 @@
+import java.util.*;
+
+class Q17 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[][] grid = new int[9][9];
+
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 9; j++)
+                grid[i][j] = sc.nextInt();
+
+        boolean valid = true;
+
+        // Check rows
+        for (int i = 0; i < 9; i++) {
+            boolean[] seen = new boolean[10];
+            for (int j = 0; j < 9; j++) {
+                int num = grid[i][j];
+                if (seen[num]) valid = false;
+                seen[num] = true;
+            }
+        }
+
+        // Check columns
+        for (int j = 0; j < 9; j++) {
+            boolean[] seen = new boolean[10];
+            for (int i = 0; i < 9; i++) {
+                int num = grid[i][j];
+                if (seen[num]) valid = false;
+                seen[num] = true;
+            }
+        }
+
+        System.out.println("Status: " + (valid ? "Valid Solution" : "Invalid Solution"));
+    }
+}
