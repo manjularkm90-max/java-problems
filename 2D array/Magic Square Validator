@@ -1,0 +1,54 @@
+import java.util.*;
+
+public class MagicSquare {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[][] matrix = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                matrix[i][j] = sc.nextInt();
+
+        System.out.println("Matrix:");
+        for (int[] row : matrix) {
+            for (int val : row) System.out.print(val + " ");
+            System.out.println();
+        }
+
+        int target = 0;
+        for (int j = 0; j < n; j++)
+            target += matrix[0][j];
+
+        boolean isMagic = true;
+
+        // Rows
+        for (int i = 0; i < n; i++) {
+            int sum = 0;
+            for (int j = 0; j < n; j++)
+                sum += matrix[i][j];
+            if (sum != target) isMagic = false;
+        }
+
+        // Columns
+        for (int j = 0; j < n; j++) {
+            int sum = 0;
+            for (int i = 0; i < n; i++)
+                sum += matrix[i][j];
+            if (sum != target) isMagic = false;
+        }
+
+        // Diagonals
+        int d1 = 0, d2 = 0;
+        for (int i = 0; i < n; i++) {
+            d1 += matrix[i][i];
+            d2 += matrix[i][n - i - 1];
+        }
+
+        if (d1 != target || d2 != target) isMagic = false;
+
+        System.out.println("\nResult: " + (isMagic ? "Magic Square" : "Not a Magic Square"));
+        System.out.println("(Constant: " + target + ")");
+    }
+}
