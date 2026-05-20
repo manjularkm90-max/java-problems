@@ -1,0 +1,12 @@
+class Test {
+    static void modify(StringBuilder sb) {
+        sb.append("World");
+        sb = new StringBuilder("New");
+    }
+
+    public static void main(String[] args) {
+        StringBuilder s = new StringBuilder("Hello");
+        modify(s);
+        System.out.println(s);
+    }
+}
