@@ -1,0 +1,16 @@
+class Test {
+    static void swap(StringBuilder a, StringBuilder b) {
+        StringBuilder temp = a;
+        a = b;
+        b = temp;
+    }
+
+    public static void main(String[] args) {
+        StringBuilder x = new StringBuilder("A");
+        StringBuilder y = new StringBuilder("B");
+
+        swap(x, y);
+
+        System.out.println(x + " " + y);
+    }
+}
