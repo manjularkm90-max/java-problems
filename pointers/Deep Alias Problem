@@ -1,0 +1,17 @@
+class Box {
+    int value;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box a = new Box();
+        a.value = 10;
+
+        Box b = a;
+        Box c = b;
+
+        c.value = 50;
+
+        System.out.println(a.value);
+    }
+}
