@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main {
+
+    static void solve(int[] arr, int target,
+                      List<Integer> current,
+                      int index) {
+
+        if(target == 0) {
+            System.out.println(current);
+            return;
+        }
+
+        if(index == arr.length || target < 0)
+            return;
+
+        current.add(arr[index]);
+
+        solve(arr, target - arr[index], current, index);
+
+        current.remove(current.size() - 1);
+
+        solve(arr, target, current, index + 1);
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = {2,3,6,7};
+
+        solve(arr, 7, new ArrayList<>(), 0);
+    }
+}
