@@ -1,0 +1,6 @@
+int a = 5, b = 10;
+
+int result = (a > b) ? (a++) : (b++);
+
+System.out.println(result);
+System.out.println(a + " " + b);
