@@ -1,0 +1,10 @@
+int a = 5;
+int b = 10;
+
+if (a++ > 5 && ++b > 10) {
+    System.out.println("True");
+} else {
+    System.out.println("False");
+}
+
+System.out.println(a + " " + b);
