@@ -1,0 +1,18 @@
+public class LargestFour {
+    public static void main(String[] args) {
+        int a = 45, b = 78, c = 23, d = 90;
+
+        int largest = a;
+
+        if (b > largest)
+            largest = b;
+
+        if (c > largest)
+            largest = c;
+
+        if (d > largest)
+            largest = d;
+
+        System.out.println("Largest = " + largest);
+    }
+}
